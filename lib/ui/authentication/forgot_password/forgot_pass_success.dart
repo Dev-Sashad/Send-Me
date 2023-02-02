@@ -1,0 +1,70 @@
+import 'package:flutter/material.dart';
+import '../../../_lib.dart';
+
+class ResetPassSuccess extends StatefulWidget {
+  @override
+  State<ResetPassSuccess> createState() => _ResetPassSuccessState();
+}
+
+class _ResetPassSuccessState extends State<ResetPassSuccess> {
+  int value = 60;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.regSuccesBckColor,
+      body: WillPopScope(
+        onWillPop: () async {
+          return true;
+        },
+        child: Consumer(builder: (context, ref, _) {
+          final vm = ref.watch(forgotPasswordVm);
+          return SizedBox(
+            height: screenHeight,
+            width: screenWidth,
+            child: Padding(
+              padding: pad(
+                horiz: eqW(40),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgImage(
+                    imgUrl: AppImages.resetSuccessImg,
+                    height: eqW(130),
+                    width: eqW(130),
+                  ),
+                  verticalSpace(eqH(50)),
+                  const CustomText(
+                    "Congratulations",
+                    color: AppColors.white,
+                    textType: TextType.headerText,
+                  ),
+                  verticalSpace(eqH(10)),
+                  SizedBox(
+                    width: eqW(304),
+                    child: const CustomText(
+                      "Your password reset was successful. You can proceed to login",
+                      color: AppColors.white,
+                      maxLines: 3,
+                      textAlign: TextAlign.center,
+                      textType: TextType.mediumText,
+                    ),
+                  ),
+                  verticalSpace(eqH(50)),
+                  CustomButton(
+                    onPressed: () => vm.navigaToLogin(),
+                    text: "Login",
+                    fillColor: AppColors.white,
+                    borderColor: AppColors.white,
+                    textColor: AppColors.primaryColor,
+                  ),
+                ],
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}

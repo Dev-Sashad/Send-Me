@@ -1,0 +1,9 @@
+const String onboardingViewRoute = "OnboardingView";
+const String splashScreenViewRoute = "SplashScreenView";
+const String loginViewRoute = "LoginView";
+const String forogtPassViewRoute = "ForogtPassView";
+const String registerViewRoute = "RegisterView";
+const String regSuccessViewRoute = "regSuccessView";
+const String resetPassViewRoute = "resetPassView";
+const String forgotPassSuccessRoute = "forgotPassSuccess";
+const String dashboardViewRoute = "dashboardView";
