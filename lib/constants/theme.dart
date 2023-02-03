@@ -59,7 +59,7 @@ class AppTheme {
       ),
     ),
     buttonTheme:
-        ButtonThemeData(buttonColor: AppColors.primaryColor, height: 58),
+        const ButtonThemeData(buttonColor: AppColors.primaryColor, height: 58),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         minimumSize: const Size.fromHeight(48),

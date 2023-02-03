@@ -1,3 +1,5 @@
 class AppEndpoint {
-  static const String baseUrl = 'https://api.com/api/v3/';
+  static const String baseUrl = '';
+  static const String foodBaseUrl = 'themealdb.p.rapidapi.com';
+  static const String chikenBreast = '/filter.php?i=chicken_breast';
 }

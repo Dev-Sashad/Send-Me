@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../_lib.dart';
 
 class ForgotPassword extends StatefulWidget {
-  static final String forgotPasswordName = '/forgotPassword';
+  const ForgotPassword({Key? key}) : super(key: key);
 
   @override
   _ForgotPasswordState createState() => _ForgotPasswordState();

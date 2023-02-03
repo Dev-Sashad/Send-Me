@@ -1,17 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:send_me/_lib.dart';
 
-class AppException implements Exception {
-  final _message;
-  final _prefix;
-
-  AppException([this._prefix, this._message]);
-
-  String toString() {
-    return "$_prefix:$_message";
-  }
-}
-
 class ApiError {
   final String errorCode;
   final String errorMessage;

@@ -30,15 +30,15 @@ class BookingModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data["dateTime"] = this.date;
-    data["priority"] = this.importance;
-    data["purpose"] = this.purpose;
-    data["userId"] = this.uid;
-    data["userName"] = this.name;
-    data["referenceId"] = this.referenceId;
-    data["bookingDate"] = this.bookingDate;
-    data["arrivalStatus"] = this.arrivalStatus;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["dateTime"] = date;
+    data["priority"] = importance;
+    data["purpose"] = purpose;
+    data["userId"] = uid;
+    data["userName"] = name;
+    data["referenceId"] = referenceId;
+    data["bookingDate"] = bookingDate;
+    data["arrivalStatus"] = arrivalStatus;
     return data;
   }
 }

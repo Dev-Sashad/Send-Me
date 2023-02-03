@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../_lib.dart';
 
 class EmailVerification extends StatefulWidget {
+  const EmailVerification({Key? key}) : super(key: key);
+
   @override
   _EmailVerificationState createState() => _EmailVerificationState();
 }
@@ -24,7 +26,7 @@ class _EmailVerificationState extends State<EmailVerification> {
               padding: pad(horiz: eqW(40), vert: 0),
               child: Column(children: [
                 verticalSpace(eqH(100)),
-                Align(
+                const Align(
                   alignment: Alignment.topLeft,
                   child: CustomText(
                     "Email Verification",
@@ -33,15 +35,13 @@ class _EmailVerificationState extends State<EmailVerification> {
                   ),
                 ),
                 verticalSpace(eqH(8)),
-                Align(
+                const Align(
                   alignment: Alignment.topLeft,
-                  child: Container(
-                    child: CustomText(
-                      "We would send an OTP to this email for verification",
-                      color: AppColors.headerTextColor,
-                      maxLines: 3,
-                      textType: TextType.mediumText,
-                    ),
+                  child: CustomText(
+                    "We would send an OTP to this email for verification",
+                    color: AppColors.headerTextColor,
+                    maxLines: 3,
+                    textType: TextType.mediumText,
                   ),
                 ),
                 verticalSpace(eqH(30)),
@@ -69,7 +69,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                 verticalSpace(eqH(20)),
                 TextButton(
                     onPressed: () => vm.close,
-                    child: CustomText(
+                    child: const CustomText(
                       "Back",
                       color: AppColors.appBlue,
                       textType: TextType.mediumText,

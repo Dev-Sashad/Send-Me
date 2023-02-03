@@ -54,7 +54,7 @@ class LoginVm extends BaseModel {
   }
 
   forgotPass(BuildContext context) {
-    slideUpdialogshow(ForgotPassword(), con: context);
+    slideUpdialogshow(const ForgotPassword(), con: context);
   }
 
   register() {

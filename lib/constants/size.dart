@@ -38,8 +38,8 @@ double eqH(double inDesign) => inDesign / 977 * screenHeight;
 double eqW(double inDesign) => inDesign / 414 * screenWidth;
 
 EdgeInsetsGeometry pad({
-  double horiz: 0,
-  double vert: 0,
+  double horiz = 0,
+  double vert = 0,
   double? both,
 }) =>
     EdgeInsets.symmetric(

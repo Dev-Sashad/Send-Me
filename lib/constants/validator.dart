@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 String? passwordValidator(String? value) {
-  RegExp lowerCase = new RegExp(r'[a-z]');
-  RegExp digit = new RegExp(r'[0-9]');
+  RegExp lowerCase = RegExp(r'[a-z]');
+  RegExp digit = RegExp(r'[0-9]');
 
   if (!lowerCase.hasMatch(value!)) {
     return 'Password should contain figure and letters';
@@ -12,55 +12,60 @@ String? passwordValidator(String? value) {
     return 'Password should contain figure and letters';
   } else if ((value.length) < 8) {
     return 'password should contain 8 characters';
-  } else
+  } else {
     return null;
+  }
 }
 
 String? emailValidator(String? value) {
   String pattern =
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-  RegExp regex = new RegExp(pattern);
+  RegExp regex = RegExp(pattern);
   if (!regex.hasMatch(value!)) {
     return 'Email format is invalid';
   } else if (value.isEmpty) {
     return 'enter email';
-  } else
+  } else {
     return null;
+  }
 }
 
 String? phoneValidator(String? value) {
   String pattern = r"(^[\+]?[234]\d{12}$)";
-  RegExp regex = new RegExp(pattern);
+  RegExp regex = RegExp(pattern);
   if (!regex.hasMatch(value!)) {
     return 'invalid phone number. e.g +2348012345678';
   } else if (value.isEmpty) {
     return 'enter phone number';
   } else if (value.length < 14) {
     return 'enter valid phone number';
-  } else
+  } else {
     return null;
+  }
 }
 
 String? itemNameValidator(String? value) {
-  RegExp upperCase = new RegExp(r'[A-Z]');
+  RegExp upperCase = RegExp(r'[A-Z]');
 
   if (!upperCase.hasMatch(value!)) {
     return 'Item name should start with caps';
   } else if (value.isEmpty) {
     return 'enter item name';
-  } else
+  } else {
     return null;
+  }
 }
 
 String? stockValidator(String? value) {
-  RegExp digit = new RegExp(r'[0-9]');
+  RegExp digit = RegExp(r'[0-9]');
 
   if (!digit.hasMatch(value!)) {
     return 'enter only digits';
   } else if (value.isEmpty) {
     return 'enter quantity';
-  } else
+  } else {
     return null;
+  }
 }
 
 bool validate(GlobalKey<FormState> formKey) {

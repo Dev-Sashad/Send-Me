@@ -6,155 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:send_me/_lib.dart';
 import 'package:send_me/core/local_data_request/local_url.dart';
-
 import '../core/local_data_request/local_data_request.dart';
-
-// class NetworkApiService {
-//   final String baseUrl = AppEndpoint.baseUrl;
-
-//   Future get(String url) async {
-//     dynamic responseJson;
-//     print(baseUrl + url);
-//     try {
-//       final response = await http.get(Uri.parse(baseUrl + url), headers: {
-//         'Content-Type': 'multipart/form-data;charset=UTF-8',
-//         'Charset': 'utf-8',
-//       });
-//       responseJson = returnResponse(response);
-
-//       return responseJson;
-//     } catch (exception, stacktrace) {
-//       // print('The exception is $exception');
-//       // print('The stacktrace is $stacktrace');
-//       handleException(exception);
-//     }
-//   }
-
-//   Future post(String url, Map body) async {
-//     dynamic responseJson;
-//     print(baseUrl + url);
-//     try {
-//       final response = await http.post(
-//         Uri.parse(baseUrl + url),
-//         body: body,
-//       );
-//       responseJson = returnResponse(response);
-//       return responseJson;
-//     } catch (exception, stacktrace) {
-//       // print('The exception is $exception');
-//       // print('The stacktrace is $stacktrace');
-
-//       handleException(exception);
-//     }
-//   }
-
-//   Future put(String url, Map body) async {
-//     dynamic responseJson;
-//     print(baseUrl + url);
-//     try {
-//       final response = await http.put(
-//         Uri.parse(baseUrl + url),
-//         body: body,
-//       );
-//       responseJson = returnResponse(response);
-//       print(responseJson);
-//       return responseJson;
-//     } catch (exception, stacktrace) {
-//       // print('The exception is $exception');
-//       // print('The stacktrace is $stacktrace');
-
-//       handleException(exception);
-//     }
-//   }
-
-//   Future patch(String url, Map body) async {
-//     dynamic responseJson;
-//     print(baseUrl + url);
-//     try {
-//       final response = await http.patch(
-//         Uri.parse(baseUrl + url),
-//         body: body,
-//       );
-//       responseJson = returnResponse(response);
-
-//       return responseJson;
-//     } catch (exception, stacktrace) {
-//       // print('The exception is $exception');
-//       // print('The stacktrace is $stacktrace');
-//       handleException(exception);
-//     }
-//   }
-
-//   Future del(String url, Map body) async {
-//     dynamic responseJson;
-//     print(baseUrl + url);
-//     try {
-//       final response = await http.delete(
-//         Uri.parse(baseUrl + url),
-//         body: body,
-//       );
-//       responseJson = returnResponse(response);
-
-//       return responseJson;
-//     } catch (exception, stacktrace) {
-//       // print('The exception is $exception');
-//       // print('The stacktrace is $stacktrace');
-
-//       handleException(exception);
-//     }
-//   }
-
-//   Future upload(File image, String url, Map body, String requestType,
-//       String fileTag) async {
-//     dynamic responseJson;
-//     try {
-//       Map<String, String> headers = {
-//         'Content-Type':
-//             'multipart/form-data; boundary=<calculated when request is sent>',
-//       };
-//       var request = new http.MultipartRequest(
-//           requestType.toUpperCase(), Uri.parse(baseUrl + url));
-//       http.MultipartFile multipartFile =
-//           await http.MultipartFile.fromPath(fileTag, image.path);
-//       if (body != null) {
-//         request.fields.addAll(body);
-//       }
-//       request.files.add(multipartFile);
-//       request.headers.addAll(headers);
-//       http.StreamedResponse res = await request.send();
-//       http.Response response = await http.Response.fromStream(res);
-//       responseJson = returnResponse(response);
-
-//       return responseJson;
-//     } catch (exception, stacktrace) {
-//       // print('The exception is $exception');
-//       // print('The stacktrace is $stacktrace');
-//       handleException(exception);
-//     }
-//   }
-
-//   dynamic handleException(e) {
-//     if (e is HttpException || e is SocketException || e is HandshakeException) {
-//       print('this is the main ----------- $e');
-//       throw AppException('Error', 'No Internet Connection');
-//     } else {
-//       throw AppException('Error', 'Connection error. Try again');
-//     }
-//   }
-
-//   dynamic returnResponse(http.Response response) {
-//     dynamic responseJson = jsonDecode(response.body);
-//     try {
-//       if (responseJson["code"].toString() == "200") {
-//         return responseJson;
-//       } else {
-//         throw AppException("Error", responseJson["message"]);
-//       }
-//     } catch (e) {
-//       throw AppException("Error", 'Request failed');
-//     }
-//   }
-// }
 
 abstract class NetworkProvider {
   Future<dynamic> call({
@@ -171,7 +23,7 @@ abstract class NetworkProvider {
 }
 
 class NetworkProviderImp extends NetworkProvider {
-  final String baseUrl = AppEndpoint.baseUrl;
+  final String baseUrl = AppEndpoint.foodBaseUrl;
 
   Dio _getDioInstance() {
     var dio = Dio(
@@ -238,7 +90,11 @@ class NetworkProviderImp extends NetworkProvider {
     }
     _getDioInstance().options.headers.addAll(
       {
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        "X-RapidAPI-Key": AppInfo.rapdiApiKey,
+        'X-RapidAPI-Host': baseUrl,
+        "useQueryString": true
       },
     );
     try {
@@ -251,7 +107,7 @@ class NetworkProviderImp extends NetworkProvider {
           response = await _getDioInstance().post(url,
               data: FormData.fromMap(body),
               queryParameters: queryParams,
-              options: Options(contentType: 'multipart/form-data'));
+              options: Options(contentType: 'application/json'));
           break;
         case RequestMethod.patch:
           response = await _getDioInstance().patch(url,

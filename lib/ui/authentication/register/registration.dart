@@ -3,6 +3,8 @@ import '../../../_lib.dart';
 import 'safety_first.dart';
 
 class Registration extends StatefulWidget {
+  const Registration({Key? key}) : super(key: key);
+
   @override
   State<Registration> createState() => _RegistrationState();
 }
@@ -16,7 +18,7 @@ class _RegistrationState extends State<Registration> {
           child: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: vm.controller,
-        children: [Register(), RegFinal()],
+        children: [const Register(), RegFinal()],
       ));
     }));
   }

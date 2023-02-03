@@ -50,10 +50,10 @@ class NotificationHelper {
   }
 
   Future<void> init() async {
-    final AndroidInitializationSettings initializationSettingsAndroid =
+    const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('launcher_icon');
 
-    final IOSInitializationSettings initializationSettingsIOS =
+    const IOSInitializationSettings initializationSettingsIOS =
         IOSInitializationSettings(
       requestSoundPermission: false,
       requestBadgePermission: false,
@@ -61,7 +61,7 @@ class NotificationHelper {
       // onDidReceiveLocalNotification: onDidReceiveLocalNotification,
     );
 
-    final InitializationSettings initializationSettings =
+    const InitializationSettings initializationSettings =
         InitializationSettings(
             android: initializationSettingsAndroid,
             iOS: initializationSettingsIOS,
@@ -74,8 +74,9 @@ class NotificationHelper {
   Future selectNotification(String? message) {
     if (message != null) {
       return _navigationService.navigateReplacementTo(dashboardViewRoute);
-    } else
+    } else {
       throw BaseResponse(title: '', message: '');
+    }
   }
 
   // Future onDidReceiveLocalNotification(int i, String j, k, l) {

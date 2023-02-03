@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../_lib.dart';
 
 class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
   @override
   _LoginState createState() => _LoginState();
 }
@@ -39,7 +41,7 @@ class _LoginState extends State<Login> {
                   verticalSpace(eqH(8)),
                   Align(
                     alignment: Alignment.topLeft,
-                    child: Container(
+                    child: SizedBox(
                       width: eqW(304),
                       child: const CustomText(
                         "Let’s dive right in, input your details",

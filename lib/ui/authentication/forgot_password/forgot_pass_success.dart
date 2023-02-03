@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../_lib.dart';
 
 class ResetPassSuccess extends StatefulWidget {
+  const ResetPassSuccess({Key? key}) : super(key: key);
+
   @override
   State<ResetPassSuccess> createState() => _ResetPassSuccessState();
 }

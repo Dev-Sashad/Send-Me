@@ -5,6 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../_lib.dart';
 
 class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
+
   @override
   _RegisterState createState() => _RegisterState();
 }

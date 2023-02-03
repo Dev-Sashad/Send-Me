@@ -34,7 +34,7 @@ void main() async {
 // ignore: must_be_immutable
 class MyApp extends StatefulWidget {
   ThemeMode? theme;
-  MyApp({this.theme});
+  MyApp({Key? key, this.theme}) : super(key: key);
   @override
   State<MyApp> createState() => _MyAppState();
 }

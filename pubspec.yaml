@@ -22,7 +22,7 @@ dependencies:
   carousel_slider: ^4.0.0
   curl_logger_dio_interceptor: ^0.0.3
   currency_text_input_formatter: ^2.1.7
-  cloud_firestore: ^3.1.5
+  cloud_firestore: 
   date_format: ^2.0.6
   dio: ^4.0.6
   dio_smart_retry: ^1.3.2
@@ -35,10 +35,6 @@ dependencies:
   fluttertoast: ^8.0.8
   fl_chart: ^0.55.2
   flutter_animated_dialog: ^2.0.1
-  flutter_datetime_picker:
-    git:
-      url: https://github.com/AlexHartford/flutter_datetime_picker.git
-      ref: master
   flutter_local_notifications: ^9.5.0
   flutter_masked_text: ^0.7.0 
   flutter_paystack: ^1.0.5+1
@@ -48,6 +44,9 @@ dependencies:
   flutter_staggered_animations:
   flutter_svg: ^1.0.3
   font_awesome_flutter: ^9.0.0
+  flutter_google_places:
+  google_maps_webservice: 
+  geoflutterfire:
   get:
   get_it: ^7.2.0
   google_fonts:
@@ -55,10 +54,7 @@ dependencies:
   intl: ^0.17.0
   intro_slider: ^2.3.3
   json_serializable: any
-  path_provider: ^2.0.2
-  percent_indicator: 
   permission_handler:
-  pin_code_fields: ^7.3.0
   pretty_dio_logger: ^1.1.1
   progress_dialog: ^1.2.4
   random_string: ^2.1.0
