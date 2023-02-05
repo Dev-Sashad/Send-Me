@@ -32,7 +32,7 @@ class ForgotPasswordVm extends BaseModel {
           barrierDismissible: false,
           context: context,
           builder: (context) {
-            return ResetPassSuccess();
+            return const ResetPassSuccess();
           });
     } else {
       setBusy(false);

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../../_lib.dart';
-import '../../widgets/bottom_sheet_widget.dart';
 
 String? isEmpty(value) {
   if (value.isEmpty) {
@@ -28,18 +26,6 @@ formatDate(value) {
 formatDateTime(value) {
   final df = DateFormat('d MMMM, y hh:mm a');
   return df.format(DateTime.parse(value));
-}
-
-showBottomSearch(List<String> data, String title, BuildContext context) {
-  return showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (_) {
-        return SearchBottomSheet(
-          data: data,
-          title: title,
-        );
-      });
 }
 
 currencyFormater(String value, {String symbol = "NGN "}) {

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:send_me/_lib.dart';
 import 'package:send_me/utils/mixins/ui_tool_mixin.dart';
-import 'package:flutter_google_places/flutter_google_places.dart';
-import 'package:google_maps_webservice/places.dart';
 
 class SendItemScreen extends StatefulWidget {
   const SendItemScreen({Key? key}) : super(key: key);
@@ -49,10 +48,11 @@ class _SendItemScreenState extends State<SendItemScreen> with UIToolMixin {
                             p!,
                             context,
                           );
-                          if (data.trim().isNotEmpty) {
-                            vm.pkAddCtrl.text = data;
+                          if (data.formattedAddress!.trim().isNotEmpty) {
+                            vm.setPickUp(data);
                           }
                         },
+                        onChanged: (v) => vm.setEstimated(false),
                         suffixIcon: const Icon(
                           Icons.location_on,
                           color: AppColors.primaryColor,
@@ -82,10 +82,11 @@ class _SendItemScreenState extends State<SendItemScreen> with UIToolMixin {
                             p!,
                             context,
                           );
-                          if (data.trim().isNotEmpty) {
-                            vm.dpAddressCtrl.text = data;
+                          if (data.formattedAddress!.trim().isNotEmpty) {
+                            vm.setDropOff(data);
                           }
                         },
+                        onChanged: (v) => vm.setEstimated(false),
                         suffixIcon: const Icon(
                           Icons.location_on,
                           color: AppColors.primaryColor,
@@ -124,6 +125,9 @@ class _SendItemScreenState extends State<SendItemScreen> with UIToolMixin {
                     verticalSpace(10),
                     InputFormField("Weight",
                         controller: vm.dpAddressCtrl,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
                         keyboardType: TextInputType.number,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         showMargin: false,
@@ -134,9 +138,20 @@ class _SendItemScreenState extends State<SendItemScreen> with UIToolMixin {
                         return "what'/s the weight of the item?";
                       }
                     }),
+                    verticalSpace(10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const CustomText('Delivery Cost:'),
+                        CustomText(
+                          currencyFormater(vm.fee.toString(), symbol: "USD"),
+                          textType: TextType.largeText,
+                        ),
+                      ],
+                    ),
                     verticalSpace(eqH(50)),
                     CustomButton(
-                        text: vm.estimated ? "Proceed" : "Estimate price",
+                        text: vm.estimated ? "Submit" : "Estimate price",
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
@@ -144,7 +159,7 @@ class _SendItemScreenState extends State<SendItemScreen> with UIToolMixin {
                             if (vm.estimated) {
                               vm.submit();
                             } else {
-                              vm.estimate();
+                              vm.estimateCost();
                             }
                           }
                         }),

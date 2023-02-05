@@ -56,7 +56,7 @@ showErrorToast(String message) {
       fontSize: 16.0);
 }
 
-showOkayDialog({String message = ''}) {
+Future<void> showOkayDialog({String message = ''}) {
   return showAnimatedDialog(
       barrierDismissible: false,
       context: context,

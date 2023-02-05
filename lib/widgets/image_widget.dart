@@ -12,13 +12,16 @@ class AssetsImage extends StatelessWidget {
   final double width;
   final double opacity;
 
-  AssetsImage(
-      {required this.imgUrl,
+  const AssetsImage(
+      {Key? key,
+      required this.imgUrl,
       this.fit = BoxFit.contain,
       this.shape = BoxShape.rectangle,
       this.height = 24,
       this.width = 24,
-      this.opacity = 1.0});
+      this.opacity = 1.0})
+      : super(key: key);
+  @override
   Widget build(BuildContext context) => Container(
         height: height,
         width: width,
@@ -39,14 +42,16 @@ class FileImage extends StatelessWidget {
   final BoxShape shape;
   final double height;
   final double width;
-  FileImage({
+  const FileImage({
+    Key? key,
     required this.file,
     this.fit = BoxFit.contain,
     this.shape = BoxShape.rectangle,
     this.height = 24,
     this.width = 24,
-  });
+  }) : super(key: key);
 
+  @override
   Widget build(BuildContext context) => Container(
         height: height,
         width: width,
@@ -69,13 +74,16 @@ class SvgImage extends StatelessWidget {
   final double height;
   final double width;
   final Color? color;
-  SvgImage(
-      {required this.imgUrl,
+  const SvgImage(
+      {Key? key,
+      required this.imgUrl,
       this.fit = BoxFit.contain,
       this.shape = BoxShape.rectangle,
       this.height = 24,
       this.width = 24,
-      this.color});
+      this.color})
+      : super(key: key);
+  @override
   Widget build(BuildContext context) => Container(
         height: height,
         width: width,
@@ -99,7 +107,8 @@ class CacheNetworkImage extends StatelessWidget {
   final Widget? errorWidget;
   final EdgeInsetsGeometry? margin;
   final BorderRadiusGeometry? radius;
-  CacheNetworkImage({
+  const CacheNetworkImage({
+    Key? key,
     required this.imgUrl,
     this.fit,
     this.shape = BoxShape.rectangle,
@@ -108,9 +117,10 @@ class CacheNetworkImage extends StatelessWidget {
     this.errorWidget,
     this.margin,
     this.radius,
-  });
+  }) : super(key: key);
+  @override
   Widget build(BuildContext context) => CachedNetworkImage(
-        imageUrl: '$imgUrl',
+        imageUrl: imgUrl,
         height: height,
         width: width,
         imageBuilder: (context, imageProvider) {
@@ -132,11 +142,10 @@ class CacheNetworkImage extends StatelessWidget {
           appPrint(
               '---cacheNetworkImage----url: $url -----error: $error ------');
           return errorWidget ??
-              Center(
-                child: Image.asset(
-                  AppImages.logo,
-                  height: 50,
-                  width: 50,
+              const Center(
+                child: Icon(
+                  Icons.error,
+                  size: 30,
                 ),
               );
         },

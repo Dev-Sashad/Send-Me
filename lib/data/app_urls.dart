@@ -1,5 +1,4 @@
 class AppEndpoint {
-  static const String baseUrl = '';
-  static const String foodBaseUrl = 'themealdb.p.rapidapi.com';
-  static const String chikenBreast = '/filter.php?i=chicken_breast';
+  static const String baseUrl = 'https://api.bossbusworld.com/api/v1/';
+  static String getCars(int page) => 'cars?page=$page';
 }

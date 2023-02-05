@@ -23,7 +23,7 @@ abstract class NetworkProvider {
 }
 
 class NetworkProviderImp extends NetworkProvider {
-  final String baseUrl = AppEndpoint.foodBaseUrl;
+  final String baseUrl = AppEndpoint.baseUrl;
 
   Dio _getDioInstance() {
     var dio = Dio(
@@ -92,9 +92,6 @@ class NetworkProviderImp extends NetworkProvider {
       {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        "X-RapidAPI-Key": AppInfo.rapdiApiKey,
-        'X-RapidAPI-Host': baseUrl,
-        "useQueryString": true
       },
     );
     try {

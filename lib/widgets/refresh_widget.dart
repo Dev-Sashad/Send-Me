@@ -22,13 +22,11 @@ class RefreshWidget extends StatelessWidget {
                     size: 50.0,
                     color: Colors.black26,
                   ),
-            Container(
-              child: Text(
-                text ?? "Oops, something went wrong. Try again!!",
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.black38,
-                ),
+            Text(
+              text ?? "Oops, something went wrong. Try again!!",
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.black38,
               ),
             ),
             verticalSpace(20),

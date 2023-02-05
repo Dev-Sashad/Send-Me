@@ -31,10 +31,10 @@ class _ResetPassSuccessState extends State<ResetPassSuccess> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgImage(
-                    imgUrl: AppImages.resetSuccessImg,
-                    height: eqW(130),
-                    width: eqW(130),
+                  const Icon(
+                    Icons.done,
+                    size: 50,
+                    color: AppColors.green,
                   ),
                   verticalSpace(eqH(50)),
                   const CustomText(
@@ -46,7 +46,7 @@ class _ResetPassSuccessState extends State<ResetPassSuccess> {
                   SizedBox(
                     width: eqW(304),
                     child: const CustomText(
-                      "Your password reset was successful. You can proceed to login",
+                      "A reset password link has been sent to your mail",
                       color: AppColors.white,
                       maxLines: 3,
                       textAlign: TextAlign.center,

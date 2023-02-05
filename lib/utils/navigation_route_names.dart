@@ -1,4 +1,3 @@
-const String onboardingViewRoute = "OnboardingView";
 const String splashScreenViewRoute = "SplashScreenView";
 const String loginViewRoute = "LoginView";
 const String forogtPassViewRoute = "ForogtPassView";
@@ -7,3 +6,5 @@ const String regSuccessViewRoute = "regSuccessView";
 const String resetPassViewRoute = "resetPassView";
 const String forgotPassSuccessRoute = "forgotPassSuccess";
 const String dashboardViewRoute = "dashboardView";
+const String sendItemViewRoute = "sendItemView";
+const String carsViewRoute = "carsView";

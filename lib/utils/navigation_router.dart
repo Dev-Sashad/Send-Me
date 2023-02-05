@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:send_me/ui/car/car_screen.dart';
 import 'package:send_me/ui/dashboard/dashboard.dart';
 import '../_lib.dart';
 
@@ -13,37 +14,43 @@ Route<dynamic> generateRoute(RouteSettings? settings) {
     case loginViewRoute:
       return _getPageRoute(
         routeName: settings.name!,
-        viewToShow: Login(),
+        viewToShow: const Login(),
       );
 
     case registerViewRoute:
       return _getPageRoute(
         routeName: settings.name!,
-        viewToShow: Registration(),
+        viewToShow: const Registration(),
       );
 
     case forogtPassViewRoute:
       return _getPageRoute(
         routeName: settings.name!,
-        viewToShow: ForgotPassword(),
+        viewToShow: const ForgotPassword(),
       );
 
     case forgotPassSuccessRoute:
       return _getPageRoute(
         routeName: settings.name,
-        viewToShow: ResetPassSuccess(),
-      );
-
-    case regSuccessViewRoute:
-      return _getPageRoute(
-        routeName: settings.name,
-        viewToShow: RegistrationSuccess(),
+        viewToShow: const ResetPassSuccess(),
       );
 
     case dashboardViewRoute:
       return _getPageRoute(
         routeName: settings.name,
-        viewToShow: Dashboard(),
+        viewToShow: const Dashboard(),
+      );
+
+    case sendItemViewRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: const SendItemScreen(),
+      );
+
+    case carsViewRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: const CarScreen(),
       );
 
     default:

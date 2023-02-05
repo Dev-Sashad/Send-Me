@@ -97,6 +97,8 @@ class RegisterVm extends BaseModel {
 
     if (response.status!) {
       setBusy(false);
+      showOkayDialog(message: response.message!).then(
+          (value) => _navigationService.navigateReplacementTo(loginViewRoute));
     } else {
       setBusy(false);
       showOkayDialog(message: response.message!);

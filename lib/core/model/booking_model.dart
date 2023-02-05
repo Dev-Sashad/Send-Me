@@ -1,44 +1,44 @@
 class BookingModel {
-  String? date;
-  String? importance;
-  String? purpose;
+  String? pickUp;
+  String? dropOff;
+  String? recieverNo;
+  int? weight;
   String? uid;
-  String? name;
   String? bookingDate;
   String? referenceId;
-  String? arrivalStatus;
+  String? deliveryStatus;
 
   BookingModel(
-      {this.date,
-      this.importance,
-      this.name,
-      this.purpose,
+      {this.pickUp,
+      this.dropOff,
+      this.recieverNo,
+      this.weight,
       this.uid,
       this.referenceId,
-      this.arrivalStatus,
+      this.deliveryStatus,
       this.bookingDate});
 
   BookingModel.fromJson(Map<String, dynamic> json) {
-    date = json["dateTime"] ?? "";
-    importance = json["priority"] ?? '';
-    purpose = json['purpose'];
+    pickUp = json["pickUp"] ?? "";
+    dropOff = json["dropOff"] ?? "";
+    weight = json["weight"] ?? "";
+    recieverNo = json["recieverNo"] ?? "";
     uid = json['userId'] ?? '';
-    name = json['userName'] ?? "";
     referenceId = json['referenceId'] ?? "";
     bookingDate = json['bookingDate'] ?? DateTime.now().toString();
-    arrivalStatus = json['arrivalStatus'] ?? '';
+    deliveryStatus = json['deliveryStatus'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data["dateTime"] = date;
-    data["priority"] = importance;
-    data["purpose"] = purpose;
+    data["pickUp"] = pickUp;
+    data["dropOff"] = dropOff;
+    data["weight"] = weight;
+    data["recieverNo"] = recieverNo;
     data["userId"] = uid;
-    data["userName"] = name;
     data["referenceId"] = referenceId;
     data["bookingDate"] = bookingDate;
-    data["arrivalStatus"] = arrivalStatus;
+    data["deliveryStatus"] = deliveryStatus;
     return data;
   }
 }

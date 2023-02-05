@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:send_me/core/local_data_request/local_data_request.dart';
 import 'package:send_me/core/local_data_request/local_url.dart';
+import 'package:send_me/core/repository/auth_repo.dart';
+import 'package:send_me/core/services/auth_data_service.dart';
 import 'package:send_me/core/services/navigation_service.dart';
 import 'package:send_me/core/services/notification_service.dart';
 import '../../_lib.dart';
@@ -17,20 +19,19 @@ class _SplashScreenState extends State<SplashScreen> {
   final NotificationHelper _notificationHelper = locator<NotificationHelper>();
   final LocalDataRequest _localDataRequest = locator<LocalDataRequest>();
   final NavigationService _navigationService = locator<NavigationService>();
+  final AuthRepo _authRepo = locator<AuthRepo>();
+  final AuthService _authService = locator<AuthService>();
 
   rememberMe() async {
-    var count = await _localDataRequest.getInt(AppLocalUrl.appLunchTimes);
     var loggedIn = await _localDataRequest.getBool(AppLocalUrl.isLoggedIn);
-    var _username = await _localDataRequest.getString(AppLocalUrl.email);
-    var _firstname = await _localDataRequest.getString(AppLocalUrl.fName);
-    Map<String, dynamic> _args = {"firstName": _firstname, "email": _username};
-
-    await Future.delayed(const Duration(seconds: 3)).then((v) {
+    final resposne = await _authRepo.getCurrentUser();
+    await Future.delayed(const Duration(seconds: 1)).then((v) {
       appPrint('logged in $loggedIn');
-      if (count != null && count > 0) {
-        return _navigationService.navigateReplacementTo(loginViewRoute);
+      if (loggedIn && resposne.status!) {
+        _authService.newUser = resposne.data;
+        return _navigationService.navigateReplacementTo(dashboardViewRoute);
       } else {
-        return _navigationService.navigateReplacementTo(onboardingViewRoute);
+        return _navigationService.navigateReplacementTo(loginViewRoute);
       }
     });
   }

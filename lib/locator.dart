@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:send_me/core/repository/car_repo.dart';
+import 'package:send_me/core/repository/firestore_repo.dart';
 import 'package:send_me/core/services/auth_data_service.dart';
 import 'package:send_me/core/services/navigation_service.dart';
 import 'package:send_me/core/services/snackbar_services.dart';
@@ -24,4 +26,6 @@ void setupServices() {
 
   // NETWORK
   locator.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(locator()));
+  locator.registerLazySingleton<FireStoreRepo>(() => FireStoreRepoImpl());
+  locator.registerLazySingleton<CarRepo>(() => CarRepoImpl(locator()));
 }
