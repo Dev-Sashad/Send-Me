@@ -33,8 +33,9 @@ class InputFormField extends StatelessWidget {
   final void Function()? onInfoPressed;
   final bool? showInfo;
 
-  InputFormField(
+  const InputFormField(
     this.label, {
+    Key? key,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.hintText,
     this.onInfoPressed,
@@ -61,7 +62,7 @@ class InputFormField extends StatelessWidget {
     this.validator,
     this.suffixIcon,
     this.toggleShowPassword,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

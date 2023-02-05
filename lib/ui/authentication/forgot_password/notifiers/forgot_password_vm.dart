@@ -4,8 +4,7 @@ import 'package:send_me/core/repository/auth_repo.dart';
 import 'package:send_me/core/services/navigation_service.dart';
 
 class ForgotPasswordVm extends BaseModel {
-  ForgotPasswordVm(this._read);
-  final Ref _read;
+  ForgotPasswordVm();
   final AuthRepo _authRepo = locator<AuthRepo>();
   final NavigationService _navigationService = locator<NavigationService>();
 
@@ -51,7 +50,7 @@ class ForgotPasswordVm extends BaseModel {
           barrierDismissible: false,
           context: context,
           builder: (context) {
-            return ResetPassSuccess();
+            return const ResetPassSuccess();
           });
     } else {
       setBusy(false);
@@ -71,5 +70,5 @@ class ForgotPasswordVm extends BaseModel {
 }
 
 final forgotPasswordVm = ChangeNotifierProvider.autoDispose<ForgotPasswordVm>(
-  (ref) => ForgotPasswordVm(ref),
+  (ref) => ForgotPasswordVm(),
 );

@@ -2,12 +2,12 @@ import 'package:intl/intl.dart';
 import 'package:date_format/date_format.dart';
 
 formatDayMonth(value) {
-  final df = new DateFormat('dd MMM, yyyy');
+  final df = DateFormat('dd MMM, yyyy');
   return df.format(value);
 }
 
 formatDayShortMonthName(value) {
-  final df = new DateFormat('dd MMM, yyyy');
+  final df = DateFormat('dd MMM, yyyy');
   var d = df.format(value).split(',');
   var y = d[0].split(' ');
   var z = y[1].length <= 4 ? y[1] : y[1].substring(0, 4);
@@ -19,34 +19,34 @@ formatShorthenMonthPlusformatTime(value) {
 }
 
 formatDateShortenDayWithTime(value) {
-  final df = new DateFormat('EEEE, dd MMM yyyy - hh:mm');
+  final df = DateFormat('EEEE, dd MMM yyyy - hh:mm');
   var d = df.format(value).split(',');
   var f = d[0].substring(0, 3);
   return '$f, ${d[1]}';
 }
 
 formatDayDateMonth(value) {
-  final df = new DateFormat('EEEE, dd MMM yyyy');
+  final df = DateFormat('EEEE, dd MMM yyyy');
   return df.format(value);
 }
 
 formatMonthDayYear(value) {
-  final df = new DateFormat('MMM, dd yyyy');
+  final df = DateFormat('MMM, dd yyyy');
   return df.format(value);
 }
 
 formatDay(value) {
-  final df = new DateFormat('EEEE');
+  final df = DateFormat('EEEE');
   return df.format(value);
 }
 
 formatHyphenDate(value) {
-  final df = new DateFormat('dd-MM-yyyy');
+  final df = DateFormat('dd-MM-yyyy');
   return df.format(value);
 }
 
 formatSlashDate(value) {
-  final df = new DateFormat('dd/MM/yyyy');
+  final df = DateFormat('dd/MM/yyyy');
   return df.format(value);
 }
 

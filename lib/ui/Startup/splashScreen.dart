@@ -1,15 +1,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:send_me/_lib.dart';
 import 'package:send_me/core/local_data_request/local_data_request.dart';
 import 'package:send_me/core/local_data_request/local_url.dart';
 import 'package:send_me/core/repository/auth_repo.dart';
 import 'package:send_me/core/services/auth_data_service.dart';
 import 'package:send_me/core/services/navigation_service.dart';
 import 'package:send_me/core/services/notification_service.dart';
-import '../../_lib.dart';
 
 class SplashScreen extends StatefulWidget {
-  SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();

@@ -4,8 +4,7 @@ import 'package:send_me/core/services/auth_data_service.dart';
 import '../../../_lib.dart';
 
 class DashboardVm extends BaseModel {
-  DashboardVm(this._read);
-  final Ref _read;
+  DashboardVm();
   final FireStoreRepo _fireStoreRepo = locator<FireStoreRepo>();
   final AuthService _authService = locator<AuthService>();
 
@@ -31,5 +30,5 @@ class DashboardVm extends BaseModel {
 }
 
 final dashboardVm = ChangeNotifierProvider<DashboardVm>(
-  (ref) => DashboardVm(ref),
+  (ref) => DashboardVm(),
 );

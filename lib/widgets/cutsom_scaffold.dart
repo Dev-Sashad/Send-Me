@@ -19,8 +19,9 @@ class BaseScaffold extends StatelessWidget {
   final void Function()? onMenuPressed;
   final Color? backgroundColor;
 
-  BaseScaffold(
-      {this.title = "",
+  const BaseScaffold(
+      {Key? key,
+      this.title = "",
       this.subTitle = "",
       this.useRowAppBar = true,
       this.bckImage,
@@ -34,7 +35,8 @@ class BaseScaffold extends StatelessWidget {
       required this.child,
       this.suffixIcon,
       this.onMenuPressed,
-      this.backgroundColor});
+      this.backgroundColor})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -91,8 +93,7 @@ Widget _appBar(
     bool showTitle = true,
     bool showLeading = true,
     bool showTrailing = true}) {
-  return Container(
-      child: Row(
+  return Row(
     mainAxisAlignment:
         showLeading ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
     children: [
@@ -120,7 +121,7 @@ Widget _appBar(
                   ))
           : horizontalSpace(eqW(20)),
     ],
-  ));
+  );
 }
 
 Widget _cancleAppBar(
@@ -157,7 +158,7 @@ Widget _cancleAppBar(
                   ),
                   showSubTitle ? verticalSpace(eqH(8)) : verticalSpace(0),
                   showSubTitle
-                      ? Container(
+                      ? SizedBox(
                           width: screenWidth * 0.75,
                           child: CustomText(
                             subTitle ?? "",

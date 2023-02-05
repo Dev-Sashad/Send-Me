@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class OkCancelDialog extends StatelessWidget {
   //String message;
-  Widget message;
-  String firstText;
-  String secondText;
-  VoidCallback route;
-  VoidCallback? cancle;
-  OkCancelDialog(this.message, this.route,
+  final Widget message;
+  final String firstText;
+  final String secondText;
+  final VoidCallback route;
+  final VoidCallback? cancle;
+  const OkCancelDialog(this.message, this.route,
       {Key? key,
       this.cancle,
       this.firstText = "Cancel",
@@ -36,7 +36,7 @@ class OkCancelDialog extends StatelessWidget {
                     flex: 1,
                     child: InkWell(
                       borderRadius: const BorderRadius.only(
-                          bottomLeft: const Radius.circular(10)),
+                          bottomLeft: Radius.circular(10)),
                       highlightColor: const Color(0xFF0D1884),
                       onTap: cancle ?? () => Navigator.of(context).pop(),
                       child: Container(

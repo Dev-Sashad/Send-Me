@@ -4,10 +4,9 @@ import 'package:send_me/ui/car/state/car_state.dart';
 import '../../../_lib.dart';
 
 class CarVm extends StateNotifier<CarState> {
-  CarVm(this._read) : super(CarState.initial()) {
+  CarVm() : super(CarState.initial()) {
     getCars();
   }
-  final Ref _read;
   final CarRepo _carRepo = locator<CarRepo>();
 
   getCars() async {
@@ -72,5 +71,5 @@ class CarVm extends StateNotifier<CarState> {
 final selectedCarIndex = StateProvider.autoDispose((ref) => -1);
 
 final carVm = StateNotifierProvider.autoDispose<CarVm, CarState>(
-  (ref) => CarVm(ref),
+  (ref) => CarVm(),
 );

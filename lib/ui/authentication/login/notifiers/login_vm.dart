@@ -8,8 +8,7 @@ import 'package:send_me/core/services/navigation_service.dart';
 import '../../../../_lib.dart';
 
 class LoginVm extends BaseModel {
-  LoginVm(this._read);
-  final Ref _read;
+  LoginVm();
   final NavigationService _navigationService = locator<NavigationService>();
   final AuthRepo _authRepo = locator<AuthRepo>();
   final AuthService _authService = locator<AuthService>();
@@ -64,5 +63,5 @@ class LoginVm extends BaseModel {
 }
 
 final loginVm = ChangeNotifierProvider.autoDispose<LoginVm>(
-  (ref) => LoginVm(ref),
+  (ref) => LoginVm(),
 );

@@ -4,7 +4,7 @@ import 'package:send_me/core/local_data_request/local_data_request.dart';
 import 'package:send_me/core/local_data_request/local_url.dart';
 
 class ThemeNotifier extends ChangeNotifier {
-  ThemeNotifier(this._read) {
+  ThemeNotifier() {
     setThemeMode();
   }
   final LocalDataRequest _dataRequest = locator<LocalDataRequest>();
@@ -22,10 +22,8 @@ class ThemeNotifier extends ChangeNotifier {
     }
     notifyListeners();
   }
-
-  final Ref _read;
 }
 
 final themeVm = ChangeNotifierProvider.autoDispose<ThemeNotifier>(
-  (ref) => ThemeNotifier(ref),
+  (ref) => ThemeNotifier(),
 );

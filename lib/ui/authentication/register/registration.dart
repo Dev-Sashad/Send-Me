@@ -18,7 +18,7 @@ class _RegistrationState extends State<Registration> {
           child: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: vm.controller,
-        children: [const Register(), RegFinal()],
+        children: const [Register(), RegFinal()],
       ));
     }));
   }

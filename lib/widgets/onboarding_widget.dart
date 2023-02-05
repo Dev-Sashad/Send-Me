@@ -6,8 +6,10 @@ class Onboarding extends StatelessWidget {
   final String? imgUrl;
   final String? title;
   final String? desc;
-  Onboarding({this.imgUrl, this.title, this.desc});
+  const Onboarding({Key? key, this.imgUrl, this.title, this.desc})
+      : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -24,7 +26,7 @@ class Onboarding extends StatelessWidget {
         Column(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 15.0),
+              margin: const EdgeInsets.only(top: 15.0),
               child: CustomText(
                 title!,
                 color: AppColors.primaryColor,
@@ -33,14 +35,12 @@ class Onboarding extends StatelessWidget {
                 fontSize: 20.sp,
               ),
             ),
-            Container(
-              child: CustomText(
-                desc!,
-                color: AppColors.primaryColor,
-                textType: TextType.largeText,
-                fontWeight: FontWeight.bold,
-                fontSize: 20.sp,
-              ),
+            CustomText(
+              desc!,
+              color: AppColors.primaryColor,
+              textType: TextType.largeText,
+              fontWeight: FontWeight.bold,
+              fontSize: 20.sp,
             )
           ],
         ),

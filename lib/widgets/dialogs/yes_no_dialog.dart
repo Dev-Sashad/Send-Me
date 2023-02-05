@@ -4,7 +4,8 @@ import 'package:send_me/_lib.dart';
 class YesNoCancelDialog extends StatelessWidget {
   final Widget message;
   final VoidCallback route;
-  YesNoCancelDialog(this.message, this.route, {Key? key}) : super(key: key);
+  const YesNoCancelDialog(this.message, this.route, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

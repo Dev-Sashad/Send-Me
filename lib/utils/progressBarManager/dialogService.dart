@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
-
 import 'dialogModels.dart';
 
 class ProgressService {
-  GlobalKey<NavigatorState> _progressNavigationKey =
+  final GlobalKey<NavigatorState> _progressNavigationKey =
       GlobalKey<NavigatorState>();
   late Function(ProgressRequest) _showProgressListener;
   late Completer<ProgressResponse>? _progressCompleter;

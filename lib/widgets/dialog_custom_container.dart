@@ -4,7 +4,7 @@ import 'package:send_me/_lib.dart';
 
 class DialogCustomContainer extends StatelessWidget {
   final Widget? child;
-  const DialogCustomContainer({this.child});
+  const DialogCustomContainer({Key? key, this.child}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Align(

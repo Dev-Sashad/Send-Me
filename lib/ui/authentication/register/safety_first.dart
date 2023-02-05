@@ -3,6 +3,8 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../../../_lib.dart';
 
 class RegFinal extends StatefulWidget {
+  const RegFinal({Key? key}) : super(key: key);
+
   @override
   _RegFinalState createState() => _RegFinalState();
 }

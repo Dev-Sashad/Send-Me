@@ -13,8 +13,7 @@ import 'package:uuid/uuid.dart';
 import '../../../_lib.dart';
 
 class SendItemVm extends BaseModel {
-  SendItemVm(this._read);
-  final Ref _read;
+  SendItemVm();
   final TextEditingController pkAddCtrl = TextEditingController();
   final TextEditingController dpAddressCtrl = TextEditingController();
   final TextEditingController numberCtrl = TextEditingController();
@@ -156,5 +155,5 @@ class SendItemVm extends BaseModel {
 }
 
 final sendItemVm = ChangeNotifierProvider<SendItemVm>(
-  (ref) => SendItemVm(ref),
+  (ref) => SendItemVm(),
 );

@@ -18,8 +18,9 @@ class CustomButton extends StatelessWidget {
   final double? padding;
   final bool? useRow;
 
-  CustomButton(
-      {this.onPressed,
+  const CustomButton(
+      {Key? key,
+      this.onPressed,
       this.height,
       this.radius = 5,
       this.width,
@@ -28,8 +29,9 @@ class CustomButton extends StatelessWidget {
       this.active = true,
       this.borderColor = AppColors.primaryColor,
       this.fillColor = AppColors.primaryColor,
-      @required this.text,
-      this.padding});
+      required this.text,
+      this.padding})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class CustomButton extends StatelessWidget {
                     width: 1.5)),
             child: useRow!
                 ? Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

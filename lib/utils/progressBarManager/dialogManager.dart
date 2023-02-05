@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import '../../_lib.dart';
+import 'package:send_me/_lib.dart';
 
 class ProgressManager extends StatefulWidget {
   final Widget? child;
-  ProgressManager({Key? key, this.child}) : super(key: key);
+  const ProgressManager({Key? key, this.child}) : super(key: key);
 
+  @override
   _ProgressManagerState createState() => _ProgressManagerState();
 }
 
 class _ProgressManagerState extends State<ProgressManager> {
-  ProgressService _progressService = locator<ProgressService>();
+  final ProgressService _progressService = locator<ProgressService>();
 
   @override
   void initState() {
@@ -28,7 +29,7 @@ class _ProgressManagerState extends State<ProgressManager> {
         barrierDismissible: false,
         barrierColor: Colors.black38,
         builder: (context) {
-          return WaitDialog();
+          return const WaitDialog();
         });
   }
 }

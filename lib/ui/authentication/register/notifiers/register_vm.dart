@@ -7,8 +7,7 @@ import 'package:send_me/core/services/navigation_service.dart';
 import '../../../../_lib.dart';
 
 class RegisterVm extends BaseModel {
-  RegisterVm(this._read);
-  final Ref _read;
+  RegisterVm();
   final NavigationService _navigationService = locator<NavigationService>();
   final LocalDataRequest _localDataRequest = locator<LocalDataRequest>();
   final AuthRepo _authRepo = locator<AuthRepo>();
@@ -115,5 +114,5 @@ class RegisterVm extends BaseModel {
 }
 
 final registerVm = ChangeNotifierProvider.autoDispose<RegisterVm>(
-  (ref) => RegisterVm(ref),
+  (ref) => RegisterVm(),
 );

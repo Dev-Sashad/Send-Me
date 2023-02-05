@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../_lib.dart';
 
 String? isEmpty(value) {
   if (value.isEmpty) {
@@ -29,7 +27,6 @@ formatDateTime(value) {
 }
 
 currencyFormater(String value, {String symbol = "NGN "}) {
-  Locale locale = Localizations.localeOf(context);
   return NumberFormat.currency(name: symbol)
       .format(double.parse(value.toString().replaceAll(",", "")));
 }

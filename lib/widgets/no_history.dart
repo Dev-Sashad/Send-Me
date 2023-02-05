@@ -4,7 +4,7 @@ import 'package:send_me/_lib.dart';
 class NoHistoryWidget extends StatelessWidget {
   final String? text;
   final String? imgUrl;
-  NoHistoryWidget({this.text, this.imgUrl});
+  const NoHistoryWidget({Key? key, this.text, this.imgUrl}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

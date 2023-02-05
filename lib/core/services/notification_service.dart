@@ -114,7 +114,7 @@ class NotificationHelper {
       if (message.notification != null) {
         RemoteNotification notification = message.notification!;
         AndroidNotification? android = message.notification?.android;
-        if (notification != null && android != null) {
+        if (android != null) {
           flutterLocalNotificationsPlugin.show(
               notification.hashCode,
               notification.title,

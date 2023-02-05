@@ -3,7 +3,7 @@ import 'package:send_me/_lib.dart';
 
 class OkDialog extends StatelessWidget {
   final Widget message;
-  OkDialog(this.message, {Key? key}) : super(key: key);
+  const OkDialog(this.message, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class OkDialog extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                     color: AppColors.primaryColor),
                 child: const Text("OK",
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 15.0,
                         fontFamily: "Carmen Sans")),
@@ -44,7 +44,8 @@ class NewOkDialog extends StatelessWidget {
   final String? title;
   final String? message;
   final void Function()? onpressed;
-  NewOkDialog(this.image, {Key? key, this.message, this.onpressed, this.title})
+  const NewOkDialog(this.image,
+      {Key? key, this.message, this.onpressed, this.title})
       : super(key: key);
 
   @override

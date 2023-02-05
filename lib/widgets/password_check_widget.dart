@@ -5,7 +5,8 @@ class PasswordCheckWidget extends StatelessWidget {
   final bool isValid;
   final String? text;
 
-  PasswordCheckWidget({this.isValid = false, this.text});
+  const PasswordCheckWidget({Key? key, this.isValid = false, this.text})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

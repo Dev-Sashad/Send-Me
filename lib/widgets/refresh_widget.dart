@@ -5,7 +5,8 @@ class RefreshWidget extends StatelessWidget {
   final void Function()? onPressed;
   final String? text;
   final String? imgUrl;
-  RefreshWidget({this.onPressed, this.text, this.imgUrl});
+  const RefreshWidget({Key? key, this.onPressed, this.text, this.imgUrl})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
