@@ -11,14 +11,13 @@ class CarVm extends StateNotifier<CarState> {
 
   getCars() async {
     try {
-      state = state.copyWith(
-        viewState: LoadingState.loading,
-      );
+      state = state.copyWith(viewState: LoadingState.loading, cars: []);
       final result = await _carRepo.getCars(state.pageSize);
 
       if (result.status!) {
         appPrint(state.viewState.name);
         CarsData data = result.data;
+        appPrint(data.toJson());
         int newPageSize = state.pageSize + 1;
         state = state.copyWith(
             viewState: LoadingState.idle,
@@ -26,20 +25,17 @@ class CarVm extends StateNotifier<CarState> {
             fetchMore: data.cars!.isNotEmpty,
             pageSize: newPageSize);
       } else {
-        state = state.copyWith(
-          viewState: LoadingState.error,
-        );
+        state = state.copyWith(viewState: LoadingState.error, cars: []);
       }
     } catch (e) {
-      state = state.copyWith(
-        viewState: LoadingState.error,
-      );
+      appPrint(e);
+      state = state.copyWith(viewState: LoadingState.error, cars: []);
     }
   }
 
   getMoreCars() async {
     try {
-      state = state.copyWith(gettingMore: true);
+      state = state.copyWith(gettingMore: true, cars: []);
       final result = await _carRepo.getCars(state.pageSize);
 
       if (result.status!) {
@@ -54,15 +50,15 @@ class CarVm extends StateNotifier<CarState> {
               fetchMore: data.cars!.isNotEmpty,
               pageSize: newPageSize);
         } else {
-          state = state.copyWith(gettingMore: false);
+          state = state.copyWith(gettingMore: false, cars: []);
           showErrorToast('No more cars in record');
         }
       } else {
-        state = state.copyWith(gettingMore: false);
+        state = state.copyWith(gettingMore: false, cars: []);
         showErrorToast(result.message!);
       }
     } catch (e) {
-      state = state.copyWith(gettingMore: false);
+      state = state.copyWith(gettingMore: false, cars: []);
       showErrorToast('error fetching cars');
     }
   }

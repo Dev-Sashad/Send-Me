@@ -95,8 +95,9 @@ class AuthRepoImpl extends AuthRepo {
       } else if (msg.code == 'email-already-in-use') {
         return BaseResponse(status: false, message: 'user already exist');
       } else {
+        appPrint(msg.message);
         return BaseResponse(
-            status: false, message: msg.message ?? 'An error occured');
+            status: false, message: 'SignUp failed. Kindly contact support');
       }
     } on SocketException {
       return BaseResponse(status: false, message: 'check internet connection');

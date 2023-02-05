@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -26,21 +25,9 @@ showToast(String message) {
       gravity: ToastGravity.SNACKBAR,
       webPosition: "center",
       timeInSecForIosWeb: 5,
-      backgroundColor: AppColors.green,
-      textColor: Colors.white,
-      fontSize: 16.0);
-}
-
-showFlushBar({String title = '', String message = '', BuildContext? context}) {
-  Flushbar(
-    backgroundColor: AppColors.grey,
-    titleColor: Colors.black,
-    title: title,
-    flushbarPosition: FlushbarPosition.TOP,
-    messageColor: Colors.black,
-    message: message,
-    duration: const Duration(seconds: 5),
-  ).show(context!);
+      backgroundColor: AppColors.grey,
+      textColor: Colors.black,
+      fontSize: 14.0);
 }
 
 showErrorToast(String message) {

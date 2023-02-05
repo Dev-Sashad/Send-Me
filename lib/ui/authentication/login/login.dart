@@ -83,8 +83,9 @@ class _LoginState extends State<Login> {
                     alignment: Alignment.topRight,
                     child: InkWell(
                         onTap: () => vm.forgotPass(context),
-                        child: const CustomText("Forgot password",
-                            color: AppColors.appBlue)),
+                        child: const CustomText(
+                          "Forgot password",
+                        )),
                   ),
                   verticalSpace(eqH(50)),
                   CustomButton(
@@ -104,7 +105,7 @@ class _LoginState extends State<Login> {
                         "Sign Up",
                         textType: TextType.mediumText,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.appBlue,
+                        color: AppColors.primaryColor,
                       ))
                 ]),
               ),

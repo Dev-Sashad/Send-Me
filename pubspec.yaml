@@ -15,7 +15,6 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  another_flushbar:
   cupertino_icons: ^1.0.2
   cached_network_image:
   connectivity_plus: ^2.2.0
@@ -49,7 +48,7 @@ dependencies:
   geoflutterfire:
   get:
   get_it: ^7.2.0
-  google_fonts:
+  google_fonts: ^3.0.1
   image_picker: ^0.7.4
   intl: ^0.17.0
   intro_slider: ^2.3.3

@@ -120,7 +120,7 @@ class InputFormField extends StatelessWidget {
                   .bodySmall!
                   .copyWith(color: AppColors.textColor_1),
               contentPadding: const EdgeInsets.only(left: 20),
-              fillColor: fillColor ?? AppColors.skyBlue,
+              fillColor: fillColor ?? AppColors.white,
               filled: true,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
@@ -163,7 +163,7 @@ class InputFormField extends StatelessWidget {
                         obscure!
                             ? FontAwesomeIcons.eyeSlash
                             : FontAwesomeIcons.eye,
-                        color: AppColors.appBlue,
+                        color: AppColors.deepGrey,
                         size: 20.sp,
                       ),
                     )

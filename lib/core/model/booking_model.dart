@@ -7,6 +7,7 @@ class BookingModel {
   String? bookingDate;
   String? referenceId;
   String? deliveryStatus;
+  double? fee;
 
   BookingModel(
       {this.pickUp,
@@ -14,6 +15,7 @@ class BookingModel {
       this.recieverNo,
       this.weight,
       this.uid,
+      this.fee,
       this.referenceId,
       this.deliveryStatus,
       this.bookingDate});
@@ -24,6 +26,7 @@ class BookingModel {
     weight = json["weight"] ?? "";
     recieverNo = json["recieverNo"] ?? "";
     uid = json['userId'] ?? '';
+    fee = json['fee'] ?? 0.0;
     referenceId = json['referenceId'] ?? "";
     bookingDate = json['bookingDate'] ?? DateTime.now().toString();
     deliveryStatus = json['deliveryStatus'] ?? '';
@@ -36,6 +39,7 @@ class BookingModel {
     data["weight"] = weight;
     data["recieverNo"] = recieverNo;
     data["userId"] = uid;
+    data["fee"] = fee;
     data["referenceId"] = referenceId;
     data["bookingDate"] = bookingDate;
     data["deliveryStatus"] = deliveryStatus;

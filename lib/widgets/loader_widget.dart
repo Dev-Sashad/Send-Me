@@ -18,7 +18,7 @@ class LoaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-        baseColor: AppColors.skyBlue,
+        baseColor: Colors.grey[300]!,
         direction: ShimmerDirection.ltr,
         period: const Duration(milliseconds: 1500),
         highlightColor: AppColors.grey,

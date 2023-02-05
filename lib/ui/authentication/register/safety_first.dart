@@ -62,7 +62,7 @@ class _RegFinalState extends State<RegFinal> {
                                 //  crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  for (int i = 0; i < 3; i++)
+                                  for (int i = 0; i < 2; i++)
                                     vm.currentIndex == i
                                         ? pageIndicator(
                                             true,
@@ -180,7 +180,7 @@ class _RegFinalState extends State<RegFinal> {
                             TextButton(
                                 onPressed: () => vm.back(),
                                 child: const CustomText("Back",
-                                    color: AppColors.appBlue,
+                                    color: AppColors.black,
                                     textType: TextType.mediumText))
                           ]),
                     ),

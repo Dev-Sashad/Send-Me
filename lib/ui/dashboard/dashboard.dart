@@ -36,153 +36,178 @@ class _DashboardState extends ConsumerState<Dashboard> with UIToolMixin {
       onWillPop: () async {
         return false;
       },
-      child: CustomScrollWidget(
-        physics: const NeverScrollableScrollPhysics(),
-        child: Scaffold(
-            body: Column(
-          children: [
-            verticalSpace(20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Scaffold(
+          body: SafeArea(
+        bottom: false,
+        child: CustomScrollWidget(
+          physics: const NeverScrollableScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      FontAwesomeIcons.hamburger,
-                      color: AppColors.primaryColor,
-                    )),
+                verticalSpace(20),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.notifications,
-                          color: AppColors.buttonPurple,
-                        )),
-                    horizontalSpace(10),
-                    IconButton(
-                        onPressed: () => signOut(),
-                        icon: const Icon(
-                          Icons.logout,
+                    InkWell(
+                        onTap: () {},
+                        child: const Icon(
+                          Icons.menu,
                           color: AppColors.primaryColor,
                         )),
+                    Row(
+                      children: [
+                        InkWell(
+                            onTap: () {},
+                            child: const Icon(
+                              Icons.notifications,
+                              color: AppColors.buttonPurple,
+                            )),
+                        horizontalSpace(20),
+                        InkWell(
+                            onTap: () => signOut(),
+                            child: const Icon(
+                              Icons.logout,
+                              color: AppColors.primaryColor,
+                            )),
+                      ],
+                    )
                   ],
-                )
-              ],
-            ),
-            verticalSpace(20),
-            CustomText(
-              'Hi, $name',
-              textType: TextType.largeText,
-            ),
-            verticalSpace(20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () => navigationService.navigateTo(sendItemViewRoute),
-                  child: Container(
-                    height: eqH(150),
-                    width: eqW(200),
-                    decoration: BoxDecoration(
-                      color: AppColors.green.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      children: [
-                        const Icon(Icons.delivery_dining),
-                        verticalSpace(5),
-                        const CustomText('Send item')
-                      ],
-                    ),
-                  ),
                 ),
-                horizontalSpace(20),
-                InkWell(
-                  onTap: () => navigationService.navigateTo(carsViewRoute),
-                  child: Container(
-                    height: eqH(150),
-                    width: eqW(200),
-                    decoration: BoxDecoration(
-                      color: AppColors.blue.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      children: [
-                        const Icon(Icons.food_bank),
-                        verticalSpace(5),
-                        const CustomText('Cars')
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            verticalSpace(10),
-            const CustomText(
-              'Orders',
-              textType: TextType.mediumText,
-            ),
-            verticalSpace(5),
-            StreamBuilder<QuerySnapshot>(
-                stream: ref.watch(dashboardVm).getMyOrders(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData && snapshot.data!.docs.isEmpty) {
-                    appPrint('it has error');
-                    return Center(
+                verticalSpace(20),
+                RichText(
+                    text: TextSpan(
+                        text: "Hi, ",
+                        style: Theme.of(context).textTheme.bodyLarge,
+                        children: [
+                      TextSpan(
+                        text: name,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(fontWeight: FontWeight.w600),
+                      )
+                    ])),
+                verticalSpace(20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () =>
+                          navigationService.navigateTo(sendItemViewRoute),
                       child: Container(
-                          alignment: Alignment.center,
+                        height: eqH(150),
+                        width: eqW(160),
+                        decoration: BoxDecoration(
+                          color: AppColors.green.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.delivery_dining),
+                            verticalSpace(5),
+                            const CustomText('Send item')
+                          ],
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () => navigationService.navigateTo(carsViewRoute),
+                      child: Container(
+                        height: eqH(150),
+                        width: eqW(160),
+                        decoration: BoxDecoration(
+                          color: AppColors.blue.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.food_bank),
+                            verticalSpace(5),
+                            const CustomText('Cars')
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                verticalSpace(20),
+                const CustomText(
+                  'Orders',
+                  textType: TextType.largeText,
+                  fontWeight: FontWeight.bold,
+                ),
+                verticalSpace(5),
+                StreamBuilder<QuerySnapshot>(
+                    stream: ref.watch(dashboardVm).getMyOrders(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData && snapshot.data!.docs.isEmpty) {
+                        appPrint('it has error');
+                        return Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              CustomText(
-                                'You have no Appointmnet records',
-                              ),
-                            ],
-                          )),
-                    );
-                  } else if (snapshot.hasData &&
-                      snapshot.data!.docs.isNotEmpty) {
-                    return ListView.builder(
-                      itemCount: snapshot.data!.docs.length,
-                      padding: const EdgeInsets.only(top: 8),
-                      itemBuilder: (context, i) {
-                        var id = snapshot.data!.docs[i].id;
-                        BookingModel _data = BookingModel.fromJson(
-                            snapshot.data!.docs[i].data());
-                        appPrint(_data.bookingDate.toString());
-                        return CustomOrderTile(
-                          data: _data,
-                          onDelete: () =>
-                              ref.watch(dashboardVm).deleteOrder(id: id),
-                        );
-                      },
-                    );
-                  } else if (snapshot.hasError) {
-                    appPrint('it has error');
-                    return Center(
-                      child: Container(
-                          alignment: Alignment.center,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               SizedBox(
                                 width: 200,
-                                child: CustomText(
-                                  'Error fetching Data',
-                                  textAlign: TextAlign.center,
+                                height: screenHeight * 0.4,
+                                child: const Center(
+                                  child: CustomText(
+                                    'You have no orders',
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ),
                             ],
-                          )),
-                    );
-                  } else {
-                    return const Screenloader(3);
-                  }
-                })
-          ],
-        )),
-      ),
+                          ),
+                        );
+                      } else if (snapshot.hasData &&
+                          snapshot.data!.docs.isNotEmpty) {
+                        return ListView.builder(
+                          itemCount: snapshot.data!.docs.length,
+                          padding: const EdgeInsets.only(top: 8),
+                          itemBuilder: (context, i) {
+                            var id = snapshot.data!.docs[i].id;
+                            BookingModel _data = BookingModel.fromJson(
+                                snapshot.data!.docs[i].data());
+                            appPrint(_data.bookingDate.toString());
+                            return CustomOrderTile(
+                              data: _data,
+                              onDelete: () =>
+                                  ref.watch(dashboardVm).deleteOrder(id: id),
+                            );
+                          },
+                        );
+                      } else if (snapshot.hasError) {
+                        appPrint('it has error');
+                        return Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 200,
+                                height: screenHeight * 0.4,
+                                child: const Center(
+                                  child: CustomText(
+                                    'Error fetching Orders',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      } else {
+                        return const Screenloader(3);
+                      }
+                    })
+              ],
+            ),
+          ),
+        ),
+      )),
     );
   }
 }

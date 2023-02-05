@@ -103,11 +103,7 @@ class SendItemVm extends BaseModel {
       context: context,
       apiKey: AppInfo.placeApiKey,
       mode: Mode.fullscreen,
-      logo: const Icon(
-        Icons.send,
-        size: 50,
-        color: AppColors.primaryColor,
-      ),
+      logo: const SizedBox(),
       language: "en",
       components: [
         Component(
@@ -136,6 +132,7 @@ class SendItemVm extends BaseModel {
           weight: int.parse(weightCtrl.text),
           recieverNo: number,
           uid: user.uid,
+          fee: fee,
           deliveryStatus: 'pending',
           referenceId: uuid);
       final result = await _fireStoreRepo.submitBooking(data: data);

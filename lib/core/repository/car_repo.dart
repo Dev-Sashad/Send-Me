@@ -15,18 +15,17 @@ class CarRepoImpl extends CarRepo {
   Future<BaseResponse> getCars(int page) async {
     try {
       final result = await _networkProvider.call(
-          path: AppEndpoint.getCars(page),
-          method: RequestMethod.post,
-          addToken: true,
-          body: {});
+          path: AppEndpoint.getCars(page), method: RequestMethod.get, body: {});
       if (result is ApiError) {
         appPrint('the error is ${result.errorMessage}');
         return BaseResponse(status: false, message: result.errorMessage);
+      } else {
+        appPrint(result);
+        var data = CarsData.fromJson(result["data"]);
+        return BaseResponse(status: true, message: 'success', data: data);
       }
-      var data = CarsData.fromJson(result);
-      return BaseResponse(
-          status: true, message: result.errorMessage, data: data);
     } catch (e) {
+      appPrint(e);
       return BaseResponse(status: false, message: 'an error occured');
     }
   }

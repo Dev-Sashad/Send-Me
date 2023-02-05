@@ -72,7 +72,7 @@ class _RegisterState extends State<Register> {
                                   //  crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                    for (int i = 0; i < 3; i++)
+                                    for (int i = 0; i < 2; i++)
                                       vm.currentIndex == i
                                           ? pageIndicator(
                                               true,
@@ -106,7 +106,6 @@ class _RegisterState extends State<Register> {
                               ),
                               PhoneFormFieldWidget(
                                 labelString: 'Phone Number',
-                                readOnly: true,
                                 initialCode: vm.code,
                                 controller: vm.phoneNoCtrl,
                                 keyBoardShow: TextInputType.number,
@@ -126,6 +125,7 @@ class _RegisterState extends State<Register> {
                                 onCountryChange: (e) => vm.setCode(e.code!),
                                 onSaved: (nm) => vm.setNumber(nm!),
                               ),
+                              verticalSpace(15),
                               InputFormField("Email",
                                   controller: vm.emailCtrl,
                                   obscure: false, validator: (value) {
@@ -160,7 +160,7 @@ class _RegisterState extends State<Register> {
                                   onPressed: () => vm.back(),
                                   child: const CustomText(
                                     "Back",
-                                    color: AppColors.appBlue,
+                                    color: AppColors.black,
                                     textType: TextType.mediumText,
                                   ))
                             ]),

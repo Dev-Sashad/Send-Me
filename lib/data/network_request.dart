@@ -13,7 +13,6 @@ abstract class NetworkProvider {
     required String path,
     required RequestMethod method,
     Map<String, dynamic> body = const {},
-    bool addToken,
     Map<String, dynamic> queryParams = const {},
   });
   Future<dynamic> upload(
@@ -73,21 +72,12 @@ class NetworkProviderImp extends NetworkProvider {
   Future<dynamic> call({
     required String? path,
     required RequestMethod? method,
-    bool? addToken,
     Map<String, dynamic> body = const {},
     Map<String, dynamic> queryParams = const {},
   }) async {
     Response response;
     var url = baseUrl + path!;
-    final token =
-        await locator<LocalDataRequest>().getString(AppLocalUrl.token) ?? "";
-
-    if (addToken!) {
-      appPrint('this is token $token');
-      var need = {'token': token};
-      body.addAll(need);
-      appPrint('the body $body');
-    }
+    appPrint(url);
     _getDioInstance().options.headers.addAll(
       {
         'Content-Type': 'application/json',
@@ -127,8 +117,7 @@ class NetworkProviderImp extends NetworkProvider {
     }
     if (response.data['status'] == 'error') {
       return ApiError(
-          errorCode: response.data['code'],
-          errorMessage: response.data['message']);
+          errorCode: "error", errorMessage: response.data['message']);
     }
     return response.data;
   }
@@ -166,8 +155,7 @@ class NetworkProviderImp extends NetworkProvider {
     }
     if (response.data['status'] == 'error') {
       return ApiError(
-          errorCode: response.data['code'],
-          errorMessage: response.data['message']);
+          errorCode: "error", errorMessage: response.data['message']);
     }
     return response.data;
   }

@@ -29,15 +29,29 @@ class CustomOrderTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: IconButton(
-                onPressed: onDelete,
-                icon: const Icon(
-                  Icons.delete,
-                  color: AppColors.buttonPurple,
-                  size: 15,
-                )),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  const CustomText(
+                    'Fee - ',
+                  ),
+                  CustomText(
+                    currencyFormater(data.fee.toString(), symbol: "USD "),
+                    color: deliveryC,
+                    textType: TextType.largeText,
+                  ),
+                ],
+              ),
+              IconButton(
+                  onPressed: onDelete,
+                  icon: const Icon(
+                    Icons.delete,
+                    color: AppColors.buttonPurple,
+                    size: 15,
+                  )),
+            ],
           ),
           verticalSpace(7),
           SizedBox(

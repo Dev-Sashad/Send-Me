@@ -45,7 +45,12 @@ class Cars {
     model = json['model'];
     year = json['year'];
     vehicleType = json['vehicleType'];
-    imagesCloudinaryIds = json['imagesCloudinaryIds'].cast<String>();
+    if (json['images'] != null) {
+      imagesCloudinaryIds = <String>[];
+      for (var v in (json['images'] as List)) {
+        imagesCloudinaryIds!.add(v);
+      }
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -56,7 +61,9 @@ class Cars {
     data['model'] = model;
     data['year'] = year;
     data['vehicleType'] = vehicleType;
-    data['imagesCloudinaryIds'] = imagesCloudinaryIds;
+    if (imagesCloudinaryIds != null) {
+      data['images'] = imagesCloudinaryIds!.map((v) => v).toList();
+    }
     return data;
   }
 }

@@ -135,13 +135,13 @@ class _PhoneFormFieldWidgetState extends State<PhoneFormFieldWidget> {
                             )
                             .toList())),
                 contentPadding: const EdgeInsets.only(left: 20),
-                fillColor: AppColors.skyBlue,
+                fillColor: AppColors.white,
                 filled: true,
-                hintText: widget.labelString,
+                hintText: widget.textHint,
                 hintStyle: Theme.of(context)
                     .textTheme
                     .bodyMedium!
-                    .copyWith(color: AppColors.appBlue, fontSize: 12),
+                    .copyWith(color: AppColors.textlightGrey, fontSize: 14),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: const BorderRadius.all(
                     Radius.circular(5),

@@ -16,15 +16,17 @@ class WaitDialog extends StatelessWidget {
           children: [
             Column(
               children: [
+                verticalSpace(10),
                 const CircularProgressIndicator(
                   color: AppColors.primaryColor,
                 ),
-                verticalSpace(5),
+                verticalSpace(10),
                 const Text("Please wait...",
                     style: TextStyle(
                         fontFamily: "Carmen Sans",
-                        fontSize: 18.0,
-                        color: Color(0xFF00053A)))
+                        fontSize: 14.0,
+                        color: Color(0xFF00053A))),
+                verticalSpace(10),
               ],
             )
           ],
