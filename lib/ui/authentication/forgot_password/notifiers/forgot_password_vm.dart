@@ -57,16 +57,6 @@ class ForgotPasswordVm extends BaseModel {
       showOkayDialog(message: response.message!);
     }
   }
-
-  pop() {
-    _navigationService.pop();
-  }
-
-  navigaToLogin() {
-    for (int i = 0; i <= 3; i++) {
-      pop();
-    }
-  }
 }
 
 final forgotPasswordVm = ChangeNotifierProvider.autoDispose<ForgotPasswordVm>(

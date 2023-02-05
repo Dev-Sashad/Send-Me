@@ -19,7 +19,7 @@ class CustomOrderTile extends StatelessWidget {
       deliveryC = Colors.redAccent[400];
     }
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      //margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
           color: Colors.grey[50],
@@ -39,16 +39,16 @@ class CustomOrderTile extends StatelessWidget {
                   ),
                   CustomText(
                     currencyFormater(data.fee.toString(), symbol: "USD "),
-                    color: deliveryC,
+                    color: AppColors.appBlue,
                     textType: TextType.largeText,
                   ),
                 ],
               ),
-              IconButton(
-                  onPressed: onDelete,
-                  icon: const Icon(
+              InkWell(
+                  onTap: onDelete,
+                  child: const Icon(
                     Icons.delete,
-                    color: AppColors.buttonPurple,
+                    color: AppColors.black,
                     size: 15,
                   )),
             ],
@@ -78,7 +78,6 @@ class CustomOrderTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(Icons.info_outline, color: AppColors.black, size: 20),
               Text(
                 'order date - ${formatDate(data.bookingDate)}',
                 style: const TextStyle(color: AppColors.black),

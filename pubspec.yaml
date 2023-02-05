@@ -44,7 +44,7 @@ dependencies:
   flutter_svg: ^1.0.3
   font_awesome_flutter: ^9.0.0
   flutter_google_places:
-  google_maps_webservice: 
+  google_maps_webservice: ^0.0.19 
   geoflutterfire:
   get:
   get_it: ^7.2.0

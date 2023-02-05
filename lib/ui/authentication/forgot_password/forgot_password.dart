@@ -53,22 +53,25 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   //   ),
                   // ),
                   verticalSpace(eqH(10)),
-                  InputFormField("Email/Phone number",
+                  InputFormField("Email",
                       controller: _emailCtrl,
-                      obscure: false, validator: (value) {
-                    if (value != null &&
-                        value.isNotEmpty &&
-                        emailorphoneRegEx(value)) {
-                      return null;
-                    } else {
-                      return "enter a valid login details";
-                    }
-                  }),
+                      onSaved: (v) => vm.setEmail(v!),
+                      obscure: false,
+                      validator: (value) {
+                        if (value != null &&
+                            value.isNotEmpty &&
+                            emailorphoneRegEx(value)) {
+                          return null;
+                        } else {
+                          return "enter a valid login details";
+                        }
+                      }),
                   verticalSpace(eqH(44)),
                   CustomButton(
                       text: "Submit",
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
                           FocusScope.of(context).unfocus();
                           vm.sendResetPasswordLink(context: context);
                         }

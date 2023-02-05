@@ -26,7 +26,7 @@ class Cars {
   String? model;
   String? year;
   String? vehicleType;
-  List<String>? imagesCloudinaryIds;
+  String? coverImage;
 
   Cars({
     this.id,
@@ -35,7 +35,7 @@ class Cars {
     this.model,
     this.year,
     this.vehicleType,
-    this.imagesCloudinaryIds,
+    this.coverImage,
   });
 
   Cars.fromJson(Map<String, dynamic> json) {
@@ -45,12 +45,7 @@ class Cars {
     model = json['model'];
     year = json['year'];
     vehicleType = json['vehicleType'];
-    if (json['images'] != null) {
-      imagesCloudinaryIds = <String>[];
-      for (var v in (json['images'] as List)) {
-        imagesCloudinaryIds!.add(v);
-      }
-    }
+    coverImage = json['coverImage'];
   }
 
   Map<String, dynamic> toJson() {
@@ -61,9 +56,7 @@ class Cars {
     data['model'] = model;
     data['year'] = year;
     data['vehicleType'] = vehicleType;
-    if (imagesCloudinaryIds != null) {
-      data['images'] = imagesCloudinaryIds!.map((v) => v).toList();
-    }
+    data['coverImage'] = coverImage;
     return data;
   }
 }

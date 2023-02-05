@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
       statusBarIconBrightness: Brightness.dark,
       systemNavigationBarIconBrightness: Brightness.light,
       systemNavigationBarColor: Colors.transparent,
-      statusBarColor: Colors.transparent,
+      statusBarColor: Colors.white,
     ));
     return DismissableKeyboardFeature(
       child: ScreenUtilInit(
@@ -75,7 +75,7 @@ class _MyAppState extends State<MyApp> {
                   locator<SnackBarService>().scaffoldMessengerKey,
               navigatorKey: locator<NavigationService>().navigationKey,
               theme: AppTheme.lightTheme,
-              home: SplashScreen(),
+              home: const SplashScreen(),
               onGenerateRoute: generateRoute,
             );
           }),

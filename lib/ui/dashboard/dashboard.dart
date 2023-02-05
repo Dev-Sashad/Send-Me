@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:send_me/_lib.dart';
 import 'package:send_me/core/model/booking_model.dart';
 import 'package:send_me/core/repository/auth_repo.dart';
@@ -54,25 +53,14 @@ class _DashboardState extends ConsumerState<Dashboard> with UIToolMixin {
                         onTap: () {},
                         child: const Icon(
                           Icons.menu,
-                          color: AppColors.primaryColor,
+                          color: AppColors.black,
                         )),
-                    Row(
-                      children: [
-                        InkWell(
-                            onTap: () {},
-                            child: const Icon(
-                              Icons.notifications,
-                              color: AppColors.buttonPurple,
-                            )),
-                        horizontalSpace(20),
-                        InkWell(
-                            onTap: () => signOut(),
-                            child: const Icon(
-                              Icons.logout,
-                              color: AppColors.primaryColor,
-                            )),
-                      ],
-                    )
+                    InkWell(
+                        onTap: () => signOut(),
+                        child: const Icon(
+                          Icons.logout,
+                          color: AppColors.primaryColor,
+                        ))
                   ],
                 ),
                 verticalSpace(20),
@@ -165,20 +153,23 @@ class _DashboardState extends ConsumerState<Dashboard> with UIToolMixin {
                         );
                       } else if (snapshot.hasData &&
                           snapshot.data!.docs.isNotEmpty) {
-                        return ListView.builder(
-                          itemCount: snapshot.data!.docs.length,
-                          padding: const EdgeInsets.only(top: 8),
-                          itemBuilder: (context, i) {
-                            var id = snapshot.data!.docs[i].id;
-                            BookingModel _data = BookingModel.fromJson(
-                                snapshot.data!.docs[i].data());
-                            appPrint(_data.bookingDate.toString());
-                            return CustomOrderTile(
-                              data: _data,
-                              onDelete: () =>
-                                  ref.watch(dashboardVm).deleteOrder(id: id),
-                            );
-                          },
+                        return SizedBox(
+                          height: screenHeight * 0.55,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.docs.length,
+                            padding: const EdgeInsets.only(top: 8),
+                            itemBuilder: (context, i) {
+                              var id = snapshot.data!.docs[i].id;
+                              BookingModel _data = BookingModel.fromJson(
+                                  snapshot.data!.docs[i].data());
+                              return CustomOrderTile(
+                                data: _data,
+                                onDelete: () =>
+                                    ref.watch(dashboardVm).deleteOrder(id: id),
+                              );
+                            },
+                          ),
                         );
                       } else if (snapshot.hasError) {
                         appPrint('it has error');

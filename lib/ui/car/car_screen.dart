@@ -19,12 +19,12 @@ class _CarScreenState extends ConsumerState<CarScreen> with UIToolMixin {
 
   @override
   void initState() {
-    _controller.addListener(() {
-      if (_controller.position.extentAfter < 100 &&
-          ref.read(carVm).fetchMore!) {
-        ref.read(carVm.notifier).getMoreCars();
-      }
-    });
+    // _controller.addListener(() {
+    //   if (_controller.position.extentAfter < 100 &&
+    //       ref.read(carVm).fetchMore!) {
+    //     ref.read(carVm.notifier).getMoreCars();
+    //   }
+    // });
     super.initState();
   }
 
@@ -63,142 +63,144 @@ class _CarScreenState extends ConsumerState<CarScreen> with UIToolMixin {
                         verticalSpace(eqH(20)),
                         SizedBox(
                           height: screenHeight * 0.8,
-                          child: Builder(builder: (co) {
-                            if (vm.viewState.isLoading) {
-                              return AnimationLimiter(
-                                child: GridView.count(
-                                  crossAxisCount: crossAxisCount,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                  children: List.generate(
-                                    9,
-                                    (int index) {
-                                      return AnimationConfiguration
-                                          .staggeredGrid(
-                                        position: index,
-                                        duration:
-                                            const Duration(milliseconds: 375),
-                                        columnCount: crossAxisCount,
-                                        child: const ScaleAnimation(
-                                          child: FadeInAnimation(
-                                            child: LoaderWidget(),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              );
-                            } else if (vm.viewState.isError) {
-                              return RefreshWidget(
-                                onPressed: () =>
-                                    ref.read(carVm.notifier).getCars(),
-                              );
-                            } else {
-                              return AnimationLimiter(
-                                child: GridView.builder(
-                                  itemCount: vm.cars.length,
-                                  shrinkWrap: true,
-                                  padding: const EdgeInsets.only(top: 10),
-                                  // physics: const NeverScrollableScrollPhysics(),
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                          childAspectRatio: 1,
-                                          mainAxisSpacing: 10,
-                                          crossAxisSpacing: 10,
-                                          crossAxisCount: crossAxisCount),
-                                  itemBuilder: (BuildContext context, int i) {
-                                    return AnimationConfiguration.staggeredGrid(
-                                        position: i,
-                                        duration:
-                                            const Duration(milliseconds: 375),
-                                        columnCount: crossAxisCount,
-                                        child: ScaleAnimation(
-                                            child: FadeInAnimation(
-                                          child: GestureDetector(
-                                              onTap: () {
-                                                ref
-                                                    .read(selectedCarIndex
-                                                        .notifier)
-                                                    .state = i;
-                                                showToast('coming soon');
-                                              },
-                                              child: Container(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: eqW(20),
-                                                    vertical: 30),
-                                                decoration: BoxDecoration(
-                                                  color: AppColors.white,
-                                                  border: Border.all(
-                                                      color: carIndex == i
-                                                          ? AppColors
-                                                              .primaryColor
-                                                          : AppColors.grey),
-                                                  boxShadow: const [
-                                                    BoxShadow(
-                                                      blurRadius: 4,
-                                                      color: Colors.black12,
-                                                    )
-                                                  ],
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    // CacheNetworkImage(
-                                                    //   imgUrl: vm
-                                                    //       .cars[i]
-                                                    //       .imagesCloudinaryIds!
-                                                    //       .last,
-                                                    //   height: eqH(50),
-                                                    //   width: eqW(50),
-                                                    // ),
-                                                    verticalSpace(5),
-                                                    CustomText(
-                                                        '${vm.cars[i].brand}'),
-                                                    verticalSpace(5),
-                                                    CustomText(
-                                                        '${vm.cars[i].model}'),
-                                                    verticalSpace(5),
-                                                    CustomText(
-                                                        '${vm.cars[i].year}')
-                                                  ],
-                                                ),
-                                              )),
-                                        )));
-                                  },
-                                ),
-                              );
-                            }
-                          }),
+                          child: Stack(
+                            children: [
+                              Builder(builder: (co) {
+                                if (vm.viewState.isLoading) {
+                                  return AnimationLimiter(
+                                    child: GridView.count(
+                                      crossAxisCount: crossAxisCount,
+                                      crossAxisSpacing: 10,
+                                      mainAxisSpacing: 10,
+                                      children: List.generate(
+                                        6,
+                                        (int index) {
+                                          return AnimationConfiguration
+                                              .staggeredGrid(
+                                            position: index,
+                                            duration: const Duration(
+                                                milliseconds: 375),
+                                            columnCount: crossAxisCount,
+                                            child: const ScaleAnimation(
+                                              child: FadeInAnimation(
+                                                child: LoaderWidget(),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                } else if (vm.viewState.isError) {
+                                  return RefreshWidget(
+                                    onPressed: () =>
+                                        ref.read(carVm.notifier).getCars(),
+                                  );
+                                } else {
+                                  return AnimationLimiter(
+                                    child: GridView.builder(
+                                      itemCount: vm.cars.length,
+                                      shrinkWrap: true,
+                                      padding: const EdgeInsets.only(top: 10),
+                                      controller: _controller,
+                                      // physics: const NeverScrollableScrollPhysics(),
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                              // childAspectRatio: 1,
+                                              mainAxisSpacing: 10,
+                                              crossAxisSpacing: 10,
+                                              crossAxisCount: crossAxisCount),
+                                      itemBuilder:
+                                          (BuildContext context, int i) {
+                                        return AnimationConfiguration
+                                            .staggeredGrid(
+                                                position: i,
+                                                duration: const Duration(
+                                                    milliseconds: 375),
+                                                columnCount: crossAxisCount,
+                                                child: ScaleAnimation(
+                                                    child: FadeInAnimation(
+                                                  child: GestureDetector(
+                                                      onTap: () {
+                                                        ref
+                                                            .read(
+                                                                selectedCarIndex
+                                                                    .notifier)
+                                                            .state = i;
+                                                        showToast(
+                                                            'coming soon');
+                                                      },
+                                                      child: Container(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal:
+                                                                    eqW(20),
+                                                                vertical:
+                                                                    eqH(10)),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color:
+                                                              AppColors.white,
+                                                          border: Border.all(
+                                                              color: carIndex ==
+                                                                      i
+                                                                  ? AppColors
+                                                                      .primaryColor
+                                                                  : AppColors
+                                                                      .grey),
+                                                          boxShadow: const [
+                                                            BoxShadow(
+                                                              blurRadius: 4,
+                                                              color: Colors
+                                                                  .black12,
+                                                            )
+                                                          ],
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                        ),
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            CacheNetworkImage(
+                                                              imgUrl: vm.cars[i]
+                                                                      .coverImage ??
+                                                                  AppInfo
+                                                                      .dummyCarImage,
+                                                              height: eqH(80),
+                                                              width: eqW(80),
+                                                            ),
+                                                            verticalSpace(5),
+                                                            CustomText(
+                                                              '${vm.cars[i].brand} ${vm.cars[i].model}',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
+                                                            verticalSpace(5),
+                                                            CustomText(
+                                                                '${vm.cars[i].year}')
+                                                          ],
+                                                        ),
+                                                      )),
+                                                )));
+                                      },
+                                    ),
+                                  );
+                                }
+                              }),
+                              // vm.gettingMore!
+                              //     ? const Align(
+                              //         alignment: Alignment.bottomCenter,
+                              //         child: CircularProgressIndicator(
+                              //           color: AppColors.primaryColor,
+                              //         ))
+                              //     : verticalSpace(0)
+                            ],
+                          ),
                         ),
-                        verticalSpace(20),
-                        vm.gettingMore!
-                            ? AnimationLimiter(
-                                child: GridView.count(
-                                  crossAxisCount: crossAxisCount,
-                                  children: List.generate(
-                                    3,
-                                    (int index) {
-                                      return AnimationConfiguration
-                                          .staggeredGrid(
-                                        position: index,
-                                        duration:
-                                            const Duration(milliseconds: 375),
-                                        columnCount: crossAxisCount,
-                                        child: const ScaleAnimation(
-                                          child: FadeInAnimation(
-                                            child: LoaderWidget(),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              )
-                            : verticalSpace(0)
                       ]),
                 ),
               ),

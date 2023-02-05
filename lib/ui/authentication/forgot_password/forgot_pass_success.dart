@@ -55,7 +55,11 @@ class _ResetPassSuccessState extends State<ResetPassSuccess> {
                   ),
                   verticalSpace(eqH(50)),
                   CustomButton(
-                    onPressed: () => vm.navigaToLogin(),
+                    onPressed: () {
+                      for (int i = 0; i < 2; i++) {
+                        Navigator.pop(context);
+                      }
+                    },
                     text: "Login",
                     fillColor: AppColors.white,
                     borderColor: AppColors.white,

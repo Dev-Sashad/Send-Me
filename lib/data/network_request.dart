@@ -63,7 +63,7 @@ class NetworkProviderImp extends NetworkProvider {
       ],
     ));
 
-    dio.interceptors.add(CurlLoggerDioInterceptor(printOnSuccess: true));
+    dio.interceptors.add(CurlLoggerDioInterceptor(printOnSuccess: false));
 
     return dio;
   }

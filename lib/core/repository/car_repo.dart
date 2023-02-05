@@ -20,7 +20,7 @@ class CarRepoImpl extends CarRepo {
         appPrint('the error is ${result.errorMessage}');
         return BaseResponse(status: false, message: result.errorMessage);
       } else {
-        appPrint(result);
+        //  appPrint(result);
         var data = CarsData.fromJson(result["data"]);
         return BaseResponse(status: true, message: 'success', data: data);
       }

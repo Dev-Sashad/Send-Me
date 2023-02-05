@@ -30,6 +30,7 @@ class SendItemVm extends BaseModel {
   //User _user;
   User get user => _authService.user!;
   double fee = 0.0;
+  double distance = 0.0;
 
   bool _estimated = false;
   bool get estimated => _estimated;
@@ -83,12 +84,13 @@ class SendItemVm extends BaseModel {
   }
 
   estimateCost() {
-    double distance = calculateDistance(
+    double _distance = calculateDistance(
         pickUpGeolocation!.latitude,
         pickUpGeolocation!.longitude,
         dropOffGeolocation!.latitude,
         dropOffGeolocation!.longitude);
-    fee = 1 * distance * int.parse(weightCtrl.text);
+    distance = double.parse(_distance.toStringAsFixed(2));
+    fee = 1 * _distance * int.parse(weightCtrl.text);
     setEstimated(true);
     notifyListeners();
   }
@@ -97,12 +99,12 @@ class SendItemVm extends BaseModel {
     showOkayDialog(message: response.errorMessage ?? "An error occured");
   }
 
-  Future<Prediction?> getPrediction() async {
+  Future<Prediction> getPrediction() async {
     Prediction? p = await PlacesAutocomplete.show(
       onError: onError,
       context: context,
       apiKey: AppInfo.placeApiKey,
-      mode: Mode.fullscreen,
+      mode: Mode.overlay,
       logo: const SizedBox(),
       language: "en",
       components: [
@@ -111,14 +113,21 @@ class SendItemVm extends BaseModel {
           "Ng",
         ),
       ],
+         offset: 0,
+      radius: 1000,
+      strictbounds: false,
+      region: "Ng"
+      types: [],
+      hint: "Search City",
+      startText:  "" 
     );
-    return p;
+    return p!;
   }
 
   Future<PlaceDetails> displayPredict(
-      Prediction p, BuildContext context) async {
+      Prediction? p, BuildContext context) async {
     PlacesDetailsResponse detail =
-        await _places.getDetailsByPlaceId(p.placeId!);
+        await _places.getDetailsByPlaceId(p!.placeId!);
     return detail.result;
   }
 
@@ -133,6 +142,7 @@ class SendItemVm extends BaseModel {
           recieverNo: number,
           uid: user.uid,
           fee: fee,
+          bookingDate: DateTime.now().toString(),
           deliveryStatus: 'pending',
           referenceId: uuid);
       final result = await _fireStoreRepo.submitBooking(data: data);
@@ -151,6 +161,6 @@ class SendItemVm extends BaseModel {
   }
 }
 
-final sendItemVm = ChangeNotifierProvider<SendItemVm>(
+final sendItemVm = ChangeNotifierProvider.autoDispose<SendItemVm>(
   (ref) => SendItemVm(),
 );

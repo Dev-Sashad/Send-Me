@@ -60,14 +60,14 @@ class _SendItemScreenState extends State<SendItemScreen> with UIToolMixin {
                               }
                               final p = await vm.getPrediction();
                               final data = await vm.displayPredict(
-                                p!,
+                                p,
                                 context,
                               );
                               if (data.formattedAddress!.trim().isNotEmpty) {
                                 vm.setPickUp(data);
+                                vm.setEstimated(false);
                               }
                             },
-                            onChanged: (v) => vm.setEstimated(false),
                             suffixIcon: const Icon(Icons.location_on,
                                 color: AppColors.textlightGrey),
                             obscure: false,
@@ -94,14 +94,14 @@ class _SendItemScreenState extends State<SendItemScreen> with UIToolMixin {
                               }
                               final p = await vm.getPrediction();
                               final data = await vm.displayPredict(
-                                p!,
+                                p,
                                 context,
                               );
                               if (data.formattedAddress!.trim().isNotEmpty) {
                                 vm.setDropOff(data);
+                                vm.setEstimated(false);
                               }
                             },
-                            onChanged: (v) => vm.setEstimated(false),
                             suffixIcon: const Icon(
                               Icons.location_on,
                               color: AppColors.textlightGrey,
@@ -117,7 +117,6 @@ class _SendItemScreenState extends State<SendItemScreen> with UIToolMixin {
                         verticalSpace(10),
                         PhoneFormFieldWidget(
                           labelString: 'Receiver\'s number',
-                          readOnly: true,
                           initialCode: vm.code,
                           controller: vm.numberCtrl,
                           keyBoardShow: TextInputType.number,
@@ -139,11 +138,17 @@ class _SendItemScreenState extends State<SendItemScreen> with UIToolMixin {
                         ),
                         verticalSpace(10),
                         InputFormField("Weight",
-                            controller: vm.dpAddressCtrl,
+                            controller: vm.weightCtrl,
                             inputFormatters: [
                               FilteringTextInputFormatter.digitsOnly,
                             ],
                             keyboardType: TextInputType.number,
+                            suffixIcon: const Align(
+                                alignment: Alignment.centerRight,
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child: CustomText('Kg'),
+                                )),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             showMargin: false,
@@ -155,6 +160,17 @@ class _SendItemScreenState extends State<SendItemScreen> with UIToolMixin {
                           }
                         }),
                         verticalSpace(20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const CustomText('Distance:'),
+                            CustomText(
+                              "${vm.distance} km",
+                              textType: TextType.largeText,
+                            ),
+                          ],
+                        ),
+                        verticalSpace(10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

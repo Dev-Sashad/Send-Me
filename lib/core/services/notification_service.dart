@@ -51,7 +51,7 @@ class NotificationHelper {
 
   Future<void> init() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('launcher_icon');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
 
     const IOSInitializationSettings initializationSettingsIOS =
         IOSInitializationSettings(
