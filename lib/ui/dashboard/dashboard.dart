@@ -5,6 +5,7 @@ import 'package:send_me/core/model/booking_model.dart';
 import 'package:send_me/core/repository/auth_repo.dart';
 import 'package:send_me/core/services/auth_data_service.dart';
 import 'package:send_me/ui/dashboard/notifier/dashboard_vm.dart';
+import 'package:send_me/ui/dashboard/view_more_info.dart';
 import 'package:send_me/utils/mixins/ui_tool_mixin.dart';
 
 class Dashboard extends ConsumerStatefulWidget {
@@ -165,8 +166,13 @@ class _DashboardState extends ConsumerState<Dashboard> with UIToolMixin {
                                   snapshot.data!.docs[i].data());
                               return CustomOrderTile(
                                 data: _data,
-                                onDelete: () =>
-                                    ref.watch(dashboardVm).deleteOrder(id: id),
+                                onTap: () => slideUpdialogshow(
+                                    ViewMoreInfo(
+                                        data: _data,
+                                        onDelete: () => ref
+                                            .watch(dashboardVm)
+                                            .deleteOrder(id: id)),
+                                    con: context),
                               );
                             },
                           ),

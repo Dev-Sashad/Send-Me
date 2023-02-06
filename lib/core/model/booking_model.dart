@@ -4,6 +4,7 @@ class BookingModel {
   String? recieverNo;
   int? weight;
   String? uid;
+  double? distance;
   String? bookingDate;
   String? referenceId;
   String? deliveryStatus;
@@ -16,6 +17,7 @@ class BookingModel {
       this.weight,
       this.uid,
       this.fee,
+      this.distance,
       this.referenceId,
       this.deliveryStatus,
       this.bookingDate});
@@ -24,6 +26,7 @@ class BookingModel {
     pickUp = json["pickUp"] ?? "";
     dropOff = json["dropOff"] ?? "";
     weight = json["weight"] ?? "";
+    distance = json["distance"] ?? 0.0;
     recieverNo = json["recieverNo"] ?? "";
     uid = json['userId'] ?? '';
     fee = json['fee'] ?? 0.0;
@@ -40,6 +43,7 @@ class BookingModel {
     data["recieverNo"] = recieverNo;
     data["userId"] = uid;
     data["fee"] = fee;
+    data["distance"] = distance;
     data["referenceId"] = referenceId;
     data["bookingDate"] = bookingDate;
     data["deliveryStatus"] = deliveryStatus;

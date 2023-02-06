@@ -142,6 +142,7 @@ class SendItemVm extends BaseModel {
           recieverNo: number,
           uid: user.uid,
           fee: fee,
+          distance: distance,
           bookingDate: DateTime.now().toString(),
           deliveryStatus: 'pending',
           referenceId: uuid);
