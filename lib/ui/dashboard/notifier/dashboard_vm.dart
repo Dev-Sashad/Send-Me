@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:send_me/core/repository/firestore_repo.dart';
 import 'package:send_me/core/services/auth_data_service.dart';
 import '../../../_lib.dart';
@@ -16,12 +17,12 @@ class DashboardVm extends BaseModel {
     return _fireStoreRepo.getMyOrders(uid);
   }
 
-  deleteOrder({required String id}) async {
+  deleteOrder({required String id, VoidCallback? call}) async {
     try {
       setBusy(true);
       final response = await _fireStoreRepo.deleteRequest(id);
       setBusy(false);
-      showOkayDialog(message: response.message!);
+      showOkayDialog(message: response.message!).then((value) => call!());
     } catch (e) {
       setBusy(false);
       showOkayDialog(message: 'an error occured');

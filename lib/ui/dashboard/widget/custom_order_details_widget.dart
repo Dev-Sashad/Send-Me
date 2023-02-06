@@ -21,17 +21,18 @@ class CustomOrderDetails extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomText(
             title ?? "",
-            textType: TextType.mediumText,
+            textType: TextType.smallText,
           ),
           SizedBox(
             width: eqW(200),
             child: CustomText(
-              title ?? "",
-              textType: TextType.largeText,
+              subTitle ?? "",
+              maxLines: 3,
+              textType: TextType.mediumText,
               color: subtitleColor,
             ),
           ),

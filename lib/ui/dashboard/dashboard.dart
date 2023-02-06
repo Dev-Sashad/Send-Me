@@ -114,7 +114,7 @@ class _DashboardState extends ConsumerState<Dashboard> with UIToolMixin {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(Icons.food_bank),
+                            const Icon(Icons.car_rental),
                             verticalSpace(5),
                             const CustomText('Cars')
                           ],
@@ -129,7 +129,6 @@ class _DashboardState extends ConsumerState<Dashboard> with UIToolMixin {
                   textType: TextType.largeText,
                   fontWeight: FontWeight.bold,
                 ),
-                verticalSpace(5),
                 StreamBuilder<QuerySnapshot>(
                     stream: ref.watch(dashboardVm).getMyOrders(),
                     builder: (context, snapshot) {
@@ -167,11 +166,7 @@ class _DashboardState extends ConsumerState<Dashboard> with UIToolMixin {
                               return CustomOrderTile(
                                 data: _data,
                                 onTap: () => slideUpdialogshow(
-                                    ViewMoreInfo(
-                                        data: _data,
-                                        onDelete: () => ref
-                                            .watch(dashboardVm)
-                                            .deleteOrder(id: id)),
+                                    ViewMoreInfo(data: _data, docsId: id),
                                     con: context),
                               );
                             },

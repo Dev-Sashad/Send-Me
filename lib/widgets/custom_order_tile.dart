@@ -21,7 +21,7 @@ class CustomOrderTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        //margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        margin: const EdgeInsets.only(top: 15),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
             color: Colors.grey[50],
@@ -45,14 +45,14 @@ class CustomOrderTile extends StatelessWidget {
             ),
             verticalSpace(7),
             SizedBox(
-              width: eqW(250),
+              //width: eqW(300),
               child: CustomText(
                 'Pick-Up - ${data.pickUp}',
               ),
             ),
             verticalSpace(7),
             SizedBox(
-              width: eqW(250),
+              // width: eqW(300),
               child: CustomText(
                 'Drop-Off - ${data.dropOff}',
               ),

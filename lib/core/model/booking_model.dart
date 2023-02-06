@@ -31,7 +31,7 @@ class BookingModel {
     uid = json['userId'] ?? '';
     fee = json['fee'] ?? 0.0;
     referenceId = json['referenceId'] ?? "";
-    bookingDate = json['bookingDate'] ?? DateTime.now().toString();
+    bookingDate = json['bookingDate'];
     deliveryStatus = json['deliveryStatus'] ?? '';
   }
 
