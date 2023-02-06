@@ -101,26 +101,25 @@ class SendItemVm extends BaseModel {
 
   Future<Prediction> getPrediction() async {
     Prediction? p = await PlacesAutocomplete.show(
-      onError: onError,
-      context: context,
-      apiKey: AppInfo.placeApiKey,
-      mode: Mode.overlay,
-      logo: const SizedBox(),
-      language: "en",
-      components: [
-        Component(
-          Component.country,
-          "Ng",
-        ),
-      ],
-         offset: 0,
-      radius: 1000,
-      strictbounds: false,
-      region: "Ng"
-      types: [],
-      hint: "Search City",
-      startText:  "" 
-    );
+        onError: onError,
+        context: context,
+        apiKey: AppInfo.placeApiKey,
+        mode: Mode.overlay,
+        logo: const SizedBox(),
+        language: "en",
+        components: [
+          Component(
+            Component.country,
+            "Ng",
+          ),
+        ],
+        offset: 0,
+        radius: 1000,
+        strictbounds: false,
+        region: "Ng",
+        types: [],
+        hint: "Search City",
+        startText: "");
     return p!;
   }
 
