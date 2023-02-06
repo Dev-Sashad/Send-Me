@@ -28,10 +28,11 @@ class CustomOrderDetails extends StatelessWidget {
             textType: TextType.smallText,
           ),
           SizedBox(
-            width: eqW(200),
+            width: eqW(230),
             child: CustomText(
               subTitle ?? "",
               maxLines: 3,
+              textAlign: TextAlign.left,
               textType: TextType.mediumText,
               color: subtitleColor,
             ),

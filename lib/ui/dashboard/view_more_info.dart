@@ -43,7 +43,7 @@ class ViewMoreInfo extends ConsumerWidget {
                   ),
                   CustomOrderDetails(
                     title: "Delivery Status",
-                    subTitle: data.deliveryStatus,
+                    subTitle: data.deliveryStatus!.capitalize(),
                     subtitleColor: data.deliveryStatus == 'pending'
                         ? Colors.orange[400]
                         : data.deliveryStatus == 'completed'
