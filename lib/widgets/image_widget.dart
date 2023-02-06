@@ -136,8 +136,7 @@ class CacheNetworkImage extends StatelessWidget {
           );
         },
         placeholder: (context, url) => Center(
-            child: LoaderWidget(
-                height: height!, width: width!, margin: margin!, shape: shape)),
+            child: LoaderWidget(height: height!, width: width!, shape: shape)),
         errorWidget: (context, url, error) {
           appPrint(
               '---cacheNetworkImage----url: $url -----error: $error ------');

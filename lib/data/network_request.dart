@@ -53,7 +53,7 @@ class NetworkProviderImp extends NetworkProvider {
     //Retry after failure
     dio.interceptors.add(RetryInterceptor(
       dio: dio,
-      logPrint: print, // specify log function (optional)
+      //  logPrint: print, // specify log function (optional)
       retries: 0, // retry count (optional)
       retryDelays: const [
         // set delays between retries (optional)

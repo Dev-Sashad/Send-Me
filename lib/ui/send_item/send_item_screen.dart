@@ -143,22 +143,22 @@ class _SendItemScreenState extends State<SendItemScreen> with UIToolMixin {
                               FilteringTextInputFormatter.digitsOnly,
                             ],
                             keyboardType: TextInputType.number,
-                            suffixIcon: const Align(
-                                alignment: Alignment.centerRight,
-                                child: Padding(
-                                  padding: EdgeInsets.only(right: 10.0),
-                                  child: CustomText('Kg'),
-                                )),
+                            suffixIcon: const Padding(
+                              padding: EdgeInsets.only(top: 15),
+                              child: CustomText('Kg'),
+                            ),
+                            onChanged: (v) => vm.setEstimated(false),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             showMargin: false,
-                            obscure: false, validator: (value) {
-                          if (value != null && value.isNotEmpty) {
-                            return null;
-                          } else {
-                            return "what'/s the weight of the item?";
-                          }
-                        }),
+                            obscure: false,
+                            validator: (value) {
+                              if (value != null && value.isNotEmpty) {
+                                return null;
+                              } else {
+                                return "what'/s the weight of the item?";
+                              }
+                            }),
                         verticalSpace(20),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -52,7 +52,7 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   verticalSpace(eqH(52)),
-                  InputFormField("Email or Phone number",
+                  InputFormField("Email",
                       controller: _emailCtrl,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       showMargin: false,
