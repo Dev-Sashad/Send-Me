@@ -28,6 +28,18 @@ class DashboardVm extends BaseModel {
       showOkayDialog(message: 'an error occured');
     }
   }
+
+  completeOrder({required String id, VoidCallback? call}) async {
+    try {
+      setBusy(true);
+      final response = await _fireStoreRepo.completeRequest(id);
+      setBusy(false);
+      showOkayDialog(message: response.message!).then((value) => call!());
+    } catch (e) {
+      setBusy(false);
+      showOkayDialog(message: 'an error occured');
+    }
+  }
 }
 
 final dashboardVm = ChangeNotifierProvider<DashboardVm>(

@@ -166,6 +166,8 @@ class _DashboardState extends ConsumerState<Dashboard> with UIToolMixin {
                                   snapshot.data!.docs[i].data());
                               return CustomOrderTile(
                                 data: _data,
+                                index: i,
+                                listLength: snapshot.data!.docs.length,
                                 onTap: () => slideUpdialogshow(
                                     ViewMoreInfo(data: _data, docsId: id),
                                     con: context),

@@ -4,8 +4,15 @@ import 'package:send_me/core/model/booking_model.dart';
 
 class CustomOrderTile extends StatelessWidget {
   final BookingModel data;
+  final int index;
+  final int listLength;
   final void Function()? onTap;
-  const CustomOrderTile({Key? key, required this.data, required this.onTap})
+  const CustomOrderTile(
+      {Key? key,
+      required this.data,
+      required this.index,
+      required this.listLength,
+      required this.onTap})
       : super(key: key);
 
   @override
@@ -21,7 +28,11 @@ class CustomOrderTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.only(top: 15, left: 5, right: 5),
+        margin: EdgeInsets.only(
+            top: index == 0 ? 5 : 15,
+            left: 5,
+            right: 5,
+            bottom: index == listLength - 1 ? 50 : 0),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
             color: Colors.grey[50],

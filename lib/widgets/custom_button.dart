@@ -56,7 +56,7 @@ class CustomButton extends StatelessWidget {
                           text!,
                           style: Theme.of(context)
                               .textTheme
-                              .bodyMedium!
+                              .bodyLarge!
                               .copyWith(
                                   color: active!
                                       ? textColor ?? AppColors.buttonTextColor
@@ -74,7 +74,7 @@ class CustomButton extends StatelessWidget {
                 : Center(
                     child: Text(
                     text!,
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         color: active!
                             ? textColor ?? AppColors.buttonTextColor
                             : AppColors.textlightGrey,

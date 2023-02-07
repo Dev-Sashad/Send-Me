@@ -6,11 +6,13 @@ class CustomOrderDetails extends StatelessWidget {
   final String? title;
   final String? subTitle;
   final Color? subtitleColor;
+  final double? subTitleFontsize;
   const CustomOrderDetails(
       {Key? key,
       this.subTitle,
-      this.title,
-      this.subtitleColor = AppColors.black})
+      this.subTitleFontsize,
+      this.subtitleColor = AppColors.black,
+      this.title})
       : super(key: key);
 
   @override
@@ -33,6 +35,7 @@ class CustomOrderDetails extends StatelessWidget {
               subTitle ?? "",
               maxLines: 3,
               textAlign: TextAlign.left,
+              fontSize: subTitleFontsize,
               textType: TextType.mediumText,
               color: subtitleColor,
             ),

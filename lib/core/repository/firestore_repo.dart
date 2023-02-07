@@ -9,6 +9,7 @@ abstract class FireStoreRepo {
     required BookingModel data,
   });
   Future<BaseResponse> deleteRequest(String documentId);
+  Future<BaseResponse> completeRequest(String documentId);
   Stream<QuerySnapshot> getMyOrders(String uid);
 }
 
@@ -43,7 +44,25 @@ class FireStoreRepoImpl extends FireStoreRepo {
           FirebaseFirestore.instance.collection(query).doc(documentId);
       await reference.delete();
       return BaseResponse(
-          status: true, title: 'Success', message: 'Order cancled');
+          status: true, title: 'Success', message: 'Order canceled');
+    } on SocketException {
+      return BaseResponse(status: false, message: 'check internet connection');
+    } catch (e) {
+      return BaseResponse(
+          status: false, title: 'Fail', message: 'An error occured');
+    }
+  }
+
+  @override
+  Future<BaseResponse> completeRequest(String documentId) async {
+    try {
+      appPrint(documentId);
+      await Future.delayed(const Duration(seconds: 1));
+      DocumentReference reference =
+          FirebaseFirestore.instance.collection(query).doc(documentId);
+      await reference.update({"deliveryStatus": "completed"});
+      return BaseResponse(
+          status: true, title: 'Success', message: 'Order completed');
     } on SocketException {
       return BaseResponse(status: false, message: 'check internet connection');
     } catch (e) {

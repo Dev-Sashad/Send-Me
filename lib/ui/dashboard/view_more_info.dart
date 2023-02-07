@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:send_me/_lib.dart';
 import 'package:send_me/core/model/booking_model.dart';
 import 'package:send_me/ui/dashboard/widget/custom_order_details_widget.dart';
@@ -66,13 +67,29 @@ class ViewMoreInfo extends ConsumerWidget {
                     title: "Fee",
                     subTitle:
                         currencyFormater(data.fee.toString(), symbol: "USD "),
+                    subTitleFontsize: 25.sp,
                     subtitleColor: AppColors.appBlue,
                   ),
                   verticalSpace(20),
                   Visibility(
                     visible: data.deliveryStatus!.toLowerCase() != "completed",
                     child: CustomButton(
-                      text: "Delete",
+                      text: "Received",
+                      onPressed: () async {
+                        ref.read(dashboardVm).completeOrder(
+                            id: docsId, call: () => Navigator.pop(context));
+                      },
+                    ),
+                  ),
+                  Visibility(
+                    visible: data.deliveryStatus!.toLowerCase() != "completed",
+                    child: TextButton(
+                      child: CustomText(
+                        "Cancel",
+                        textType: TextType.mediumText,
+                        fontSize: 20.sp,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                       onPressed: () async {
                         ref.read(dashboardVm).deleteOrder(
                             id: docsId, call: () => Navigator.pop(context));
