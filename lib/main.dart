@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
       statusBarIconBrightness: Brightness.dark,
       systemNavigationBarIconBrightness: Brightness.light,
       systemNavigationBarColor: Colors.transparent,
-      statusBarColor: Colors.white,
+      statusBarColor: Colors.transparent,
     ));
     return DismissableKeyboardFeature(
       child: ScreenUtilInit(

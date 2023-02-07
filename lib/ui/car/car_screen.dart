@@ -56,8 +56,8 @@ class _CarScreenState extends ConsumerState<CarScreen> with UIToolMixin {
                           ),
                         ),
                         verticalSpace(20),
-                        const CustomText(
-                          'Cars',
+                        CustomText(
+                          'Cars (${vm.cars.length})',
                           textType: TextType.bigText,
                           fontWeight: FontWeight.bold,
                         ),

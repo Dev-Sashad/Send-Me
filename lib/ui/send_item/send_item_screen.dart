@@ -17,11 +17,11 @@ class _SendItemScreenState extends State<SendItemScreen> with UIToolMixin {
   Widget build(BuildContext context) {
     return Consumer(builder: (context, watch, _) {
       final vm = watch.watch(sendItemVm);
-      return SafeArea(
-        bottom: false,
-        child: Scaffold(
-            backgroundColor: AppColors.white,
-            body: Padding(
+      return Scaffold(
+          backgroundColor: AppColors.white,
+          body: SafeArea(
+            bottom: false,
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Form(
                 key: _formKey,
@@ -200,8 +200,8 @@ class _SendItemScreenState extends State<SendItemScreen> with UIToolMixin {
                       ]),
                 ),
               ),
-            )),
-      );
+            ),
+          ));
     });
   }
 }
