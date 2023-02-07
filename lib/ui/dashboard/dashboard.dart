@@ -154,7 +154,8 @@ class _DashboardState extends ConsumerState<Dashboard> with UIToolMixin {
                       } else if (snapshot.hasData &&
                           snapshot.data!.docs.isNotEmpty) {
                         return SizedBox(
-                          height: screenHeight * 0.55,
+                          height: screenHeight * 0.65,
+                          width: screenWidth,
                           child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: snapshot.data!.docs.length,

@@ -69,12 +69,15 @@ class ViewMoreInfo extends ConsumerWidget {
                     subtitleColor: AppColors.appBlue,
                   ),
                   verticalSpace(20),
-                  CustomButton(
-                    text: "Delete",
-                    onPressed: () async {
-                      ref.read(dashboardVm).deleteOrder(
-                          id: docsId, call: () => Navigator.pop(context));
-                    },
+                  Visibility(
+                    visible: data.deliveryStatus!.toLowerCase() != "completed",
+                    child: CustomButton(
+                      text: "Delete",
+                      onPressed: () async {
+                        ref.read(dashboardVm).deleteOrder(
+                            id: docsId, call: () => Navigator.pop(context));
+                      },
+                    ),
                   ),
                   verticalSpace(20)
                 ],

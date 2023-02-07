@@ -19,12 +19,13 @@ class _CarScreenState extends ConsumerState<CarScreen> with UIToolMixin {
 
   @override
   void initState() {
-    // _controller.addListener(() {
-    //   if (_controller.position.extentAfter < 100 &&
-    //       ref.read(carVm).fetchMore!) {
-    //     ref.read(carVm.notifier).getMoreCars();
-    //   }
-    // });
+    _controller.addListener(() {
+      if (_controller.position.extentAfter < 100 &&
+          ref.read(carVm).fetchMore! &&
+          ref.read(carVm).gettingMore == false) {
+        ref.read(carVm.notifier).getMoreCars();
+      }
+    });
     super.initState();
   }
 
@@ -191,13 +192,13 @@ class _CarScreenState extends ConsumerState<CarScreen> with UIToolMixin {
                                   );
                                 }
                               }),
-                              // vm.gettingMore!
-                              //     ? const Align(
-                              //         alignment: Alignment.bottomCenter,
-                              //         child: CircularProgressIndicator(
-                              //           color: AppColors.primaryColor,
-                              //         ))
-                              //     : verticalSpace(0)
+                              vm.gettingMore!
+                                  ? const Align(
+                                      alignment: Alignment.bottomCenter,
+                                      child: CircularProgressIndicator(
+                                        color: AppColors.deepGrey,
+                                      ))
+                                  : verticalSpace(0)
                             ],
                           ),
                         ),
