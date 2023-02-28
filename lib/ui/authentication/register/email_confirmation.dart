@@ -38,7 +38,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                 const Align(
                   alignment: Alignment.topLeft,
                   child: CustomText(
-                    "We would send an OTP to this email for verification",
+                    "We would send a link to this email for verification",
                     color: AppColors.headerTextColor,
                     maxLines: 3,
                     textType: TextType.mediumText,
