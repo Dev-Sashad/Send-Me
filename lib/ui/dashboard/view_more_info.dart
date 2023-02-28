@@ -19,6 +19,7 @@ class ViewMoreInfo extends ConsumerWidget {
           useRowAppBar: false,
           showLeading: false,
           showSubTitle: false,
+          onPop: () => Navigator.of(context).pop(),
           title: "Order Details",
           child: CustomScrollWidget(
             child: Padding(

@@ -62,7 +62,7 @@ Future<void> showOkayDialog({String message = ''}) {
 
 slideUpdialogshow(Widget widget, {BuildContext? con}) {
   return showAnimatedDialog(
-      barrierDismissible: false,
+      barrierDismissible: true,
       context: context,
       animationType: DialogTransitionType.slideFromBottomFade,
       curve: Curves.fastOutSlowIn,

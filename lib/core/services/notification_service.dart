@@ -27,6 +27,7 @@ class NotificationHelper {
     'High Importance Notifications', // name
     description:
         'This channel is used for important notifications.', // description
+    groupId: "0",
     importance: Importance.max,
     ledColor: AppColors.primaryColor,
   );
@@ -63,9 +64,9 @@ class NotificationHelper {
 
     const InitializationSettings initializationSettings =
         InitializationSettings(
-            android: initializationSettingsAndroid,
-            iOS: initializationSettingsIOS,
-            macOS: null);
+      android: initializationSettingsAndroid,
+      iOS: initializationSettingsIOS,
+    );
 
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: selectNotification);
@@ -101,7 +102,7 @@ class NotificationHelper {
             UILocalNotificationDateInterpretation.absoluteTime);
   }
 
-  Future<void> onMessage(BuildContext context) async {
+  Future<void> onMessage() async {
     // Get any messages which caused the application to open from
     // a terminated state.
     RemoteMessage? initialMessage =
@@ -114,24 +115,20 @@ class NotificationHelper {
       if (message.notification != null) {
         RemoteNotification notification = message.notification!;
         AndroidNotification? android = message.notification?.android;
-        if (android != null) {
-          flutterLocalNotificationsPlugin.show(
-              notification.hashCode,
-              notification.title,
-              notification.body,
-              NotificationDetails(
-                android: AndroidNotificationDetails(
-                  channel.id,
-                  channel.name,
-                  channelDescription: channel.description,
-                  icon: android.smallIcon,
-                  // other properties...
-                ),
-              ));
-        }
-        _progressService.showDialog(
-            title: message.notification!.title,
-            description: message.notification!.body);
+
+        flutterLocalNotificationsPlugin.show(
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+              android: AndroidNotificationDetails(
+                channel.id,
+                channel.name,
+                channelDescription: channel.description,
+                icon: "@mipmap/ic_launcher",
+                // other properties...
+              ),
+            ));
       }
     });
   }
@@ -153,20 +150,20 @@ class NotificationHelper {
     FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage);
   }
 
-  Future<void> onBackgroungMessage() async {
-    RemoteMessage? initialMessage =
-        await FirebaseMessaging.instance.getInitialMessage();
+  // Future<void> onBackgroungMessage() async {
+  //   RemoteMessage? initialMessage =
+  //       await FirebaseMessaging.instance.getInitialMessage();
 
-    // If the message also contains a data property with a "type" of "chat",
-    // navigate to a chat screen
-    if (initialMessage != null) {
-      _handleMessage(initialMessage);
-    }
+  //   // If the message also contains a data property with a "type" of "chat",
+  //   // navigate to a chat screen
+  //   if (initialMessage != null) {
+  //     _handleMessage(initialMessage);
+  //   }
 
-    // Also handle any interaction when the app is in the background via a
-    // Stream listener
-    FirebaseMessaging.onBackgroundMessage(_handleMessage);
-  }
+  //   // Also handle any interaction when the app is in the background via a
+  //   // Stream listener
+  //   FirebaseMessaging.onBackgroundMessage(_handleMessage);
+  // }
 
   Future<void> _handleMessage(RemoteMessage message) async {
     if (message.notification!.body != null) {

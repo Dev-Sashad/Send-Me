@@ -18,7 +18,7 @@ class BaseScaffold extends StatelessWidget {
   final Widget? suffixIcon;
   final void Function()? onMenuPressed;
   final Color? backgroundColor;
-
+  final void Function()? onPop;
   const BaseScaffold(
       {Key? key,
       this.title = "",
@@ -34,6 +34,7 @@ class BaseScaffold extends StatelessWidget {
       this.showDivider = false,
       required this.child,
       this.suffixIcon,
+      this.onPop,
       this.onMenuPressed,
       this.backgroundColor})
       : super(key: key);
@@ -42,44 +43,48 @@ class BaseScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor ?? AppColors.white,
-      body: Stack(
-        children: [
-          bckImage != null
-              ? Container(
-                  height: eqH(331),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(bckImage!), fit: BoxFit.fitWidth)),
-                )
-              : Container(),
-          Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    left: eqW(10), right: eqW(20), top: eqH(topPadding)),
-                child: useRowAppBar
-                    ? _appBar(
-                        title: title,
-                        showTitle: showTitle,
-                        onPop: () => Navigator.pop(context),
-                        showLeading: showLeading,
-                        showTrailing: showTrailing,
-                        suffixIcon: suffixIcon!,
-                        onMenuPressed: onMenuPressed!)
-                    : _cancleAppBar(
-                        onPop: () => Navigator.pop(context),
-                        title: title,
-                        subTitle: subTitle,
-                        showDivider: showDivider,
-                        showSubTitle: showSubTitle,
-                        showTitle: showTitle),
-              ),
-              showSubTitle ? verticalSpace(30) : verticalSpace(0),
-              Expanded(child: child)
-            ],
-          ),
-        ],
+      body: SafeArea(
+        bottom: false,
+        child: Stack(
+          children: [
+            bckImage != null
+                ? Container(
+                    height: eqH(331),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(bckImage!),
+                            fit: BoxFit.fitWidth)),
+                  )
+                : Container(),
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: eqW(10), right: eqW(20), top: eqH(0)),
+                  child: useRowAppBar
+                      ? _appBar(
+                          title: title,
+                          showTitle: showTitle,
+                          onPop: () => Navigator.pop(context),
+                          showLeading: showLeading,
+                          showTrailing: showTrailing,
+                          suffixIcon: suffixIcon!,
+                          onMenuPressed: onMenuPressed!)
+                      : _cancleAppBar(
+                          onPop: onPop ?? () => Navigator.pop(context),
+                          title: title,
+                          subTitle: subTitle,
+                          showDivider: showDivider,
+                          showSubTitle: showSubTitle,
+                          showTitle: showTitle),
+                ),
+                showSubTitle ? verticalSpace(30) : verticalSpace(0),
+                Expanded(child: child)
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -138,7 +143,7 @@ Widget _cancleAppBar(
       children: [
         Align(
             alignment: Alignment.topRight,
-            child: InkWell(
+            child: GestureDetector(
                 onTap: onPop,
                 child: Icon(
                   Icons.close,

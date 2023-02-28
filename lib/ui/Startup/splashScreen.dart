@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:send_me/_lib.dart';
@@ -39,10 +40,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   init() {
     _notificationHelper.initialize();
-    _notificationHelper.createChannel();
+    if (Platform.isAndroid) {
+      _notificationHelper.createChannel();
+    }
     _notificationHelper.init();
     _notificationHelper.getFcmToken();
-    _notificationHelper.onMessage(context);
+    _notificationHelper.onMessage();
     _notificationHelper.onMessageOpenApp();
     rememberMe();
   }
